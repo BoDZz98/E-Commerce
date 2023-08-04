@@ -1,9 +1,9 @@
-import { Form, Link } from "react-router-dom";
+import { Form, Link, formData, json, redirect, useActionData } from "react-router-dom";
 import useInput from "../hooks/use-input";
-
+import { createUserWithEmailAndPassword } from "firebase/auth";
+import { auth } from "../firebase-config";
 function SignUp() {
-  let formIsValid;
-
+  const data = useActionData();
   const {
     value: enteredFirstName,
     isValid: enteredFirstNameIsValid,
@@ -30,6 +30,7 @@ function SignUp() {
     inputBlurHanlder: emailBlurHandler,
     reset: resetEmailInput,
   } = useInput((value) => value.includes("@"));
+
   const firstNameClass = firstNameInputHasError
     ? "rounded border border-danger bg-red-200"
     : "rounded";
@@ -39,9 +40,27 @@ function SignUp() {
   const emailClass = emailInputHasError
     ? "rounded border border-danger bg-red-200"
     : "rounded";
+
+
+  let formIsValid;
+  if (
+    enteredFirstNameIsValid &&
+    enteredPasswordIsValid &&
+    enteredEmailIsValid
+  ) {
+    formIsValid = true;
+  }
+
   return (
     <div className=" flex justify-center  bg-gray-400 w-screen h-screen ">
-      <Form className="flex flex-col gap-y-4 w-1/5 h-1/2 mt-28 bg-gray-200 p-16 rounded-xl">
+      {data && data.errors && (
+        <ul>
+          {Object.values(data.errors).map((err) => (
+            <li key={err}>{err}</li>
+          ))}
+        </ul>
+      )}
+      <Form method="Post" className="flex flex-col gap-y-4 w-1/5 h-1/2 mt-28 bg-gray-200 p-16 rounded-xl">
         <div className="flex flex-col gap-y-1 h-20 ">
           <label htmlFor="name">First Name</label>
           <input
@@ -60,10 +79,11 @@ function SignUp() {
         </div>
 
         <div className="flex flex-col h-20 gap-y-1 ">
-          <label htmlFor="name">E-Mail Address</label>
+          <label htmlFor="email">E-Mail Address</label>
           <input
             type="text"
-            id="name"
+            id="email"
+            name="email"
             className={emailClass}
             value={enteredEmail}
             onChange={emailChangeHandler}
@@ -74,10 +94,11 @@ function SignUp() {
           )}
         </div>
         <div className="flex flex-col h-20 gap-y-1 ">
-          <label htmlFor="name">Password</label>
+          <label htmlFor="password">Password</label>
           <input
             type="password"
             id="password"
+            name="password"
             className={passwordClass}
             value={enteredPassword}
             onChange={passwordChangeHandler}
@@ -91,12 +112,9 @@ function SignUp() {
         </div>
 
         <div className="flex flex-col gap-y-2 items-start">
-          <button disabled={!formIsValid}>Register</button>
+          <button disabled={!formIsValid} className="btn btn-primary">Register</button>
           <p className="text-sm ">
-            Already Have An Account{" "}
-            <Link className="" to="/login">
-              Login
-            </Link>
+            Already Have An Account <Link to="/login">Login</Link>
           </p>
         </div>
       </Form>
@@ -105,3 +123,30 @@ function SignUp() {
 }
 
 export default SignUp;
+
+export async function registerAction({ request, params }) {
+ 
+  const data = await request.formData();
+ 
+  const enteredEmail=data.get("email")
+  const enteredPassword=data.get("password")
+  // console.log('email', enteredEmail,'passowrd ', enteredPassword )
+  try {
+     await createUserWithEmailAndPassword(
+      auth,
+      enteredEmail,
+      enteredPassword
+    );
+    
+
+  } catch (error) {
+   
+    // return to the nearest element error
+     throw json({ message: error.message }, { status: 500 });
+  }
+
+  return redirect("/");
+}
+
+/*   async function login() {}
+  async function logout() {} */
