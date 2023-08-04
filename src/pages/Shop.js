@@ -1,20 +1,25 @@
 import { Fragment } from "react";
-import { Breadcrumb } from "react-bootstrap";
+import { Breadcrumb, Col, Container, Row } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import MyBreadcrumb from "../components/shop/Breadcrumb";
+import { Filter } from "../components/shop/Filter";
+import { Products } from "../components/shop/Products";
 
 function Shop() {
   return (
     <Fragment>
-      <div className="w-screen h-72 bg-red-300 flex flex-col items-center justify-center">
-        <h1 className="text-5xl font-extrabold">OUR SHOP</h1>
-        <Breadcrumb className="fs-4">
-          <Breadcrumb.Item href="/">
-            <Link  to="/">Home </Link>
-          </Breadcrumb.Item>
-
-          <Breadcrumb.Item active>Shop</Breadcrumb.Item>
-        </Breadcrumb>
-      </div>
+      <MyBreadcrumb />
+      <div className="h-28"></div>
+      <Container fluid>
+        <Row>
+          <Col xl={3}>
+            <Filter />
+          </Col>
+          <Col xl={9} >
+            <Products />
+          </Col>
+        </Row>
+      </Container>
     </Fragment>
   );
 }
