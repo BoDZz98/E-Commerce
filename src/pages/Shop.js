@@ -1,11 +1,12 @@
 import { Fragment } from "react";
-import { Breadcrumb, Col, Container, Row } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import { Col, Container, Row } from "react-bootstrap";
 import MyBreadcrumb from "../components/shop/Breadcrumb";
 import { Filter } from "../components/shop/Filter";
 import { Products } from "../components/shop/Products";
+import { useLoaderData } from "react-router-dom";
 
 function Shop() {
+  const data = useLoaderData();
   return (
     <Fragment>
       <MyBreadcrumb />
@@ -15,7 +16,7 @@ function Shop() {
           <Col xl={3}>
             <Filter />
           </Col>
-          <Col xl={9} >
+          <Col xl={8} >
             <Products />
           </Col>
         </Row>
@@ -25,3 +26,19 @@ function Shop() {
 }
 
 export default Shop;
+
+
+export async function productsLoader() {
+  const response = await fetch("https://dummyjson.com/products?limit=10");
+
+  if (!response.ok) {
+    // return { isError: true, message: "could not fetch events" };
+    // this return statement will trigger the closest error element ,which is in the root
+    return json({ message: "could not fetch" }, { status: 500 });
+  } else {
+    //const resData = await response.json();
+    //return resData.events;
+    console.log(response);
+    return response;
+  }
+}

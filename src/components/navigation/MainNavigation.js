@@ -9,9 +9,9 @@ import Search from "./Search";
 
 function MainNavigation() {
   return (
-    <Container className="my-3" fluid>
-      <Row>
-        <Col lg={2} className=" mr-24">
+    <div className="flex flex-col px-28" >
+      <Row className="flex ">
+        <Col lg={2} className=" mr-24"> 
           <div className="flex">
             <p className="border border-orange-300 px-3 text-4xl text-red-400 font-extrabold ">
               E
@@ -30,11 +30,11 @@ function MainNavigation() {
         <Col xl={2}>
           <MainDropDown />
         </Col>
-        <Col xl={8} className="ml-24">
+        <Col xl={9} className="ml-24">
           <NavBar />
         </Col>
       </Row>
-    </Container>
+    </div>
   );
 }
 

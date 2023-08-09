@@ -2,7 +2,7 @@ import Button from "react-bootstrap/Button";
 
 function FavAndCart() {
   return (
-    <div className="flex ml-64 gap-x-2">
+    <div className="flex  gap-x-2 ml-80">
       <Button variant="outline-dark">
         <div className="flex gap-x-1">
           <svg

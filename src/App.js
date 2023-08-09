@@ -5,8 +5,9 @@ import Root from "./layouts/Root";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Login, { loginAction } from "./pages/Login";
 import SignUp, { registerAction } from "./pages/SignUp";
-import Shop from "./pages/Shop";
+import Shop, { productsLoader } from "./pages/Shop";
 import ErrorPage from "./pages/ErrorPage";
+import { ProductDetails } from "./pages/ProductDetails";
 
 const myRouter = createBrowserRouter([
   {
@@ -15,9 +16,10 @@ const myRouter = createBrowserRouter([
     errorElement: <ErrorPage />,
     children: [
       { index: true, element: <HomePage /> },
-      { path: "shop", element: <Shop /> },
-      { path: "login", element: <Login /> ,action:loginAction},
+      { path: "shop", element: <Shop />, loader: productsLoader },
+      { path: "login", element: <Login />, action: loginAction },
       { path: "signUp", element: <SignUp />, action: registerAction },
+      { path: "productDetails", element: <ProductDetails /> },
     ],
   },
 ]);

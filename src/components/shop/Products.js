@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 export function Products() {
   return (
     <div className=" w-full h-screen grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 ">
-      <Card style={{ width: "23rem", height: "36rem" }}>
+      <Card style={{ width: "20rem", height: "33rem" }}>
         <Card.Img
           variant="top"
           src="https://publish.purewow.net/wp-content/uploads/sites/2/2023/04/denim-summer-fashion-trends-2023.jpg?fit=680%2C800"
@@ -34,7 +34,7 @@ export function Products() {
         </ListGroup>
       </Card>
       {/* /////////// */}
-      <Card style={{ width: "23rem", height: "36rem" }}>
+      <Card style={{ width: "20rem", height: "33rem" }}>
         <Card.Img
           variant="top"
           src="https://publish.purewow.net/wp-content/uploads/sites/2/2023/04/denim-summer-fashion-trends-2023.jpg?fit=680%2C800"
@@ -64,7 +64,7 @@ export function Products() {
         </ListGroup>
       </Card>
       {/* //////////// */}
-      <Card style={{ width: "23rem", height: "36rem" }}>
+      <Card style={{ width: "20rem", height: "33rem" }}>
         <Card.Img
           variant="top"
           src="https://publish.purewow.net/wp-content/uploads/sites/2/2023/04/denim-summer-fashion-trends-2023.jpg?fit=680%2C800"

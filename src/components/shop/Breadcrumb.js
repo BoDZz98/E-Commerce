@@ -1,7 +1,7 @@
 import { Breadcrumb } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
-function MyBreadcrumb() {
+function ShopBreadcrumb() {
   return (
     <div className="h-72 bg-red-300 flex flex-col items-center justify-center">
       <h1 className="text-5xl font-extrabold">OUR SHOP</h1>
@@ -15,4 +15,4 @@ function MyBreadcrumb() {
   );
 }
 
-export default MyBreadcrumb;
+export default ShopBreadcrumb;

@@ -35,13 +35,13 @@ function NavBar() {
             </NavLink>
 
             <NavLink
-              to="details"
+              to="productDetails"
               className={({ isActive }) =>
                 isActive ? "text-cyan-400 " : 'no-underline'
               }
             >
            
-              <Nav.Link className="text-black fs-5 ">Shop Detail</Nav.Link>
+              <Nav.Link  href='/' className="text-black fs-5 ">Shop Detail</Nav.Link>
             </NavLink>
 
             <NavDropdown

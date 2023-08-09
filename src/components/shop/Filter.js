@@ -2,7 +2,7 @@ import { Form } from "react-router-dom";
 
 export function Filter() {
   return (
-    <div className=" h-screen pl-16 flex flex-col">
+    <div className=" h-screen ml-28 flex flex-col">
       <h2 className="mb-4"> Filter by price</h2>
       <Form className="border-b-2">
         <div className="flex gap-x-3 text-xl font-semibold mb-3">
