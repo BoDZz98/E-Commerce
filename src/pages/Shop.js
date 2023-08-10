@@ -3,12 +3,14 @@ import { Col, Container, Row } from "react-bootstrap";
 import MyBreadcrumb from "../components/shop/Breadcrumb";
 import { Filter } from "../components/shop/Filter";
 import { Products } from "../components/shop/Products";
-import { useLoaderData } from "react-router-dom";
+import { json, useLoaderData } from "react-router-dom";
 
 function Shop() {
   const data = useLoaderData();
+  
   return (
     <Fragment>
+      
       <MyBreadcrumb />
       <div className="h-28"></div>
       <Container fluid>
@@ -17,7 +19,7 @@ function Shop() {
             <Filter />
           </Col>
           <Col xl={8} >
-            <Products />
+            <Products productsDetails={data}/>
           </Col>
         </Row>
       </Container>
@@ -36,9 +38,9 @@ export async function productsLoader() {
     // this return statement will trigger the closest error element ,which is in the root
     return json({ message: "could not fetch" }, { status: 500 });
   } else {
-    //const resData = await response.json();
-    //return resData.events;
-    console.log(response);
-    return response;
+    const resData = await response.json();
+   
+    // console.log(resData);
+    return resData.products;
   }
 }

@@ -4,7 +4,7 @@ function MyImage(props) {
   return (
     
     <div className={classes}>
-      <img className="rounded-lg transition ease-in-out delay-150 hover:scale-125 duration-300" src={src}  />
+      <img className="w-fit h-fit rounded-lg transition ease-in-out delay-150 hover:scale-125 duration-300" src={src}  />
     </div>
   );
 }

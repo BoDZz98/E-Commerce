@@ -1,4 +1,6 @@
 import { Col, Row } from "react-bootstrap";
+import { Form } from "react-router-dom";
+import { ReviewForm } from "./ReviewForm";
 
 export function ReviewsTab() {
   return (
@@ -26,7 +28,10 @@ export function ReviewsTab() {
           </div>
         </div>
       </Col>
-      <Col className="bg-yellow-400"></Col>
+      <Col>
+        <h3>Leave A Review</h3>
+        <ReviewForm />
+      </Col>
     </Row>
   );
 }

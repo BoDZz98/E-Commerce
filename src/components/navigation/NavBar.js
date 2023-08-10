@@ -55,8 +55,7 @@ function NavBar() {
                   isActive ? "text-cyan-400 " : 'no-underline'
                 }
               >
-                
-                <NavDropdown.Item>Action</NavDropdown.Item>
+                <NavDropdown.Item href="/">Shopping Cart</NavDropdown.Item>
               </NavLink>
 
               <NavLink
@@ -65,7 +64,7 @@ function NavBar() {
                   isActive ? "text-cyan-400 " : undefined
                 }
               >
-                <NavDropdown.Item>Another action</NavDropdown.Item>
+                <NavDropdown.Item href="/">Checkout</NavDropdown.Item>
               </NavLink>
             </NavDropdown>
             <NavLink

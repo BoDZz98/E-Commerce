@@ -7,7 +7,8 @@ import Login, { loginAction } from "./pages/Login";
 import SignUp, { registerAction } from "./pages/SignUp";
 import Shop, { productsLoader } from "./pages/Shop";
 import ErrorPage from "./pages/ErrorPage";
-import { ProductDetails } from "./pages/ProductDetails";
+import { ProductDetails, detailsLoader } from "./pages/ProductDetails";
+import { Cart } from "./pages/Cart";
 
 const myRouter = createBrowserRouter([
   {
@@ -19,7 +20,12 @@ const myRouter = createBrowserRouter([
       { path: "shop", element: <Shop />, loader: productsLoader },
       { path: "login", element: <Login />, action: loginAction },
       { path: "signUp", element: <SignUp />, action: registerAction },
-      { path: "productDetails", element: <ProductDetails /> },
+      {
+        path: "shop/:productId",
+        element: <ProductDetails />,
+        loader: detailsLoader,
+      },
+      { path: "cart", element: <Cart /> },
     ],
   },
 ]);

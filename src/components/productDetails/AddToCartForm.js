@@ -1,23 +1,9 @@
 import { Form } from "react-router-dom";
 import { MyRadioButton } from "../MyRadioButton";
-import { useState } from "react";
+import { MyButtonsGroup } from "../MyButtonsGroup";
 
 export function AddToCartForm() {
-  const [number, setNumber] = useState(1);
-  const inc = () =>
-    setNumber((prev) => {
-      if (prev === 5) {
-        return (prev = 5);
-      }
-      return (prev += 1);
-    });
-  const dec = () =>
-    setNumber((prev) => {
-      if (prev === 0) {
-        return (prev = 0);
-      }
-      return (prev -= 1);
-    });
+  
   return (
     <Form className="flex flex-col gap-y-5">
       <div className="flex gap-x-5">
@@ -37,19 +23,7 @@ export function AddToCartForm() {
         <MyRadioButton id="color5" name="color" text="Green" />
       </div>
       <div className="w-fit flex">
-        <button
-          onClick={dec}
-          className="bg-red-400 pb-1 w-10 h-10 text-3xl font-bold"
-        >
-          -
-        </button>
-        <input className="w-14  px-6" type="text" value={number} disabled />
-        <button
-          onClick={inc}
-          className="bg-red-400 pb-1 w-10 h-10 text-3xl font-bold"
-        >
-          +
-        </button>
+        <MyButtonsGroup />
         <button className="bg-red-400 ml-8 p-2 w-40 flex gap-x-3" type="submit">
           <svg
             xmlns="http://www.w3.org/2000/svg"

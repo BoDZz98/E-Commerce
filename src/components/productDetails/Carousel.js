@@ -1,20 +1,17 @@
-import Carousel from 'react-bootstrap/Carousel';
-import MyImage from '../MyImage';
+import Carousel from "react-bootstrap/Carousel";
+import MyImage from "../MyImage";
 
-function ProductDetailsCarousel() {
+function ProductDetailsCarousel({ productImgs }) {
   return (
-    <Carousel  >
-      <Carousel.Item interval={3000} >
-        <MyImage  link='https://publish.purewow.net/wp-content/uploads/sites/2/2023/04/denim-summer-fashion-trends-2023.jpg?fit=680%2C800'/>
-      </Carousel.Item>
-      <Carousel.Item interval={3000} >
-      <MyImage  link='https://publish.purewow.net/wp-content/uploads/sites/2/2023/04/denim-summer-fashion-trends-2023.jpg?fit=680%2C800'/>
-        
-      </Carousel.Item>
-      <Carousel.Item >
-      <MyImage  link='https://publish.purewow.net/wp-content/uploads/sites/2/2023/04/denim-summer-fashion-trends-2023.jpg?fit=680%2C800'/>
-        
-      </Carousel.Item>
+    <Carousel>
+      {productImgs.map((oneImge) => (
+        <Carousel.Item interval={3000} className="h-96">
+          <img
+            className="h-full  rounded-lg transition ease-in-out delay-150 hover:scale-125 duration-300"
+            src={oneImge}
+          />
+        </Carousel.Item>
+      ))}
     </Carousel>
   );
 }
