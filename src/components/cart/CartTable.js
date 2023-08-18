@@ -44,7 +44,7 @@ export function CartTable() {
             </td>
             <td class=" border-r px-6 py-4 ">${cartItem.price}</td>
             <td class=" border-r px-6 py-4">
-              <MyButtonsGroup cartDetails={cartItem} />
+              <MyButtonsGroup productDetails={cartItem} inCart={true}/>
             </td>
             <td class=" border-r px-6 py-4">${cartItem.totalPrice}</td>
             <td class="px-6 py-4">

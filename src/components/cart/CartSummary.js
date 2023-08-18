@@ -1,6 +1,9 @@
 import { Fragment } from "react";
+import { useSelector } from "react-redux";
 
 export function CartSummary() {
+  const cartTotalPrice = useSelector((state) => state.cart.totalCartPrice);
+  const shippingPrice = cartTotalPrice === 0 ? 0 : 50;
   return (
     <Fragment>
       <div className="flex flex-col gap-y-10">
@@ -30,17 +33,16 @@ export function CartSummary() {
                 Shipping
               </td>
               <td class="flex justify-end px-6 py-4">
-                $150 <br />
-                $10
+                ${cartTotalPrice} <br />${shippingPrice}
               </td>
             </tr>
             <tr>
-              <td class="px-6 py-4 font-bold">
-                Total 
+              <td class="px-6 py-4 font-bold">Total</td>
+              <td class="flex justify-end px-6 py-4 font-bold">
+                ${cartTotalPrice + shippingPrice}
               </td>
-              <td class="flex justify-end px-6 py-4 font-bold">$160</td>
             </tr>
-            <tr >
+            <tr>
               <td class="px-6 " colSpan={2}>
                 <button className="bg-red-400 py-3 mb-4 w-full font-normal hover:text-white hover:font-bold">
                   Proceed To Checkout

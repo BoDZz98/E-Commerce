@@ -9,6 +9,7 @@ import Shop, { productsLoader } from "./pages/Shop";
 import ErrorPage from "./pages/ErrorPage";
 import { ProductDetails, detailsLoader } from "./pages/ProductDetails";
 import { Cart } from "./pages/Cart";
+import Checkout from "./pages/Checkout";
 
 const myRouter = createBrowserRouter([
   {
@@ -26,6 +27,7 @@ const myRouter = createBrowserRouter([
         loader: detailsLoader,
       },
       { path: "cart", element: <Cart /> },
+      { path: "checkout", element: <Checkout /> },
     ],
   },
 ]);

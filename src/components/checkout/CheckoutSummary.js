@@ -1,6 +1,10 @@
 import React from "react";
+import { useSelector } from "react-redux";
 
 const CheckoutSummary = () => {
+  const cartTotalPrice = useSelector((state) => state.cart.totalCartPrice);
+  const shippingPrice = cartTotalPrice === 0 ? 0 : 50;
+
   return (
     <table class="w-5/6 border font-light dark:border-neutral-500">
       <thead class="border-b font-medium bg-blue-100 dark:border-neutral-500">
@@ -24,13 +28,14 @@ const CheckoutSummary = () => {
             Shipping
           </td>
           <td class="flex justify-end px-6 py-4">
-            $150 <br />
-            $10
+            ${cartTotalPrice} <br />${shippingPrice}
           </td>
         </tr>
         <tr>
           <td class="px-6 py-4 font-bold">Total</td>
-          <td class="flex justify-end px-6 py-4 font-bold">$160</td>
+          <td class="flex justify-end px-6 py-4 font-bold">
+            ${cartTotalPrice + shippingPrice}
+          </td>
         </tr>
         <tr>
           <td class="px-6 " colSpan={2}>
