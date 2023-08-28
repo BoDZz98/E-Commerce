@@ -1,4 +1,3 @@
-import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import NavDropdown from "react-bootstrap/NavDropdown";
@@ -7,11 +6,10 @@ import { NavLink } from "react-router-dom";
 function NavBar() {
   return (
     <Navbar className="text-black">
-      <Container fluid>
         <Navbar.Toggle aria-controls="navbarScroll" />
         <Navbar.Collapse id="navbarScroll">
           <Nav
-            className="me-auto my-2 gap-x-6"
+            className="me-auto my-2 gap-x-6 -ml-8"
             style={{ maxHeight: "100px" }}
             navbarScroll
           >
@@ -32,16 +30,6 @@ function NavBar() {
               }
             >
               <Nav.Link href='/'className="text-black fs-5 ">Shop</Nav.Link>
-            </NavLink>
-
-            <NavLink
-              to="productDetails"
-              className={({ isActive }) =>
-                isActive ? "text-cyan-400 " : 'no-underline'
-              }
-            >
-           
-              <Nav.Link  href='/' className="text-black fs-5 ">Shop Detail</Nav.Link>
             </NavLink>
 
             <NavDropdown
@@ -76,7 +64,7 @@ function NavBar() {
               <Nav.Link  className="text-black fs-5 ">Contact</Nav.Link>
             </NavLink>
           </Nav>
-          <Nav className="ml-96 ">
+          <Nav>
             <NavLink
               to="login"
               className={({ isActive }) =>
@@ -96,7 +84,7 @@ function NavBar() {
             </NavLink>
           </Nav>
         </Navbar.Collapse>
-      </Container>
+      
     </Navbar>
   );
 }
