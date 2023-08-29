@@ -10,12 +10,16 @@ import ErrorPage from "./pages/ErrorPage";
 import { ProductDetails, detailsLoader } from "./pages/ProductDetails";
 import { Cart } from "./pages/Cart";
 import Checkout from "./pages/Checkout";
+import { getAuthToken, logoutAction } from "./utils/authToken";
 
 const myRouter = createBrowserRouter([
   {
     path: "/",
     element: <Root />,
     errorElement: <ErrorPage />,
+    id: "root",
+    loader: getAuthToken,
+    action: logoutAction,
     children: [
       { index: true, element: <HomePage /> },
       { path: "shop", element: <Shop />, loader: productsLoader },

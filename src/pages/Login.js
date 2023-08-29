@@ -10,7 +10,6 @@ function Login() {
     hasError: passwordInputHasError,
     valueChangeHandler: passwordChangeHandler,
     inputBlurHanlder: passwordBlurHandler,
-    reset: resetPasswordInput,
   } = useInput((value) => value.trim().length > 6);
 
   const {
@@ -19,7 +18,6 @@ function Login() {
     hasError: emailInputHasError,
     valueChangeHandler: emailChangeHandler,
     inputBlurHanlder: emailBlurHandler,
-    reset: resetEmailInput,
   } = useInput((value) => value.includes("@"));
 
   const passwordClass = passwordInputHasError
@@ -74,7 +72,11 @@ function Login() {
         </div>
 
         <div className="flex flex-col gap-y-2 items-start">
-          <button disabled={!formIsValid} className="btn btn-primary">
+          <button
+            disabled={!formIsValid}
+            className="btn btn-primary"
+            // onClick={() => dispatch(authActions.login)}
+          >
             Login
           </button>
           <p className="text-sm ">
@@ -100,6 +102,6 @@ export async function loginAction({ request, params }) {
     // return to the nearest element error
     throw json({ message: error.message }, { status: 500 });
   }
-
+  localStorage.setItem("token", "1");
   return redirect("/");
 }
