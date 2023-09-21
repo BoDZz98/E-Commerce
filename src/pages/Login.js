@@ -102,6 +102,7 @@ export async function loginAction({ request, params }) {
     // return to the nearest element error
     throw json({ message: error.message }, { status: 500 });
   }
-  localStorage.setItem("token", "1");
+ 
+  localStorage.setItem("token", auth.currentUser.uid);
   return redirect("/");
 }

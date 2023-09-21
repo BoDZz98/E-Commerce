@@ -10,7 +10,7 @@ export function Details({productDetails}) {
       <p className="mt-2">
         {productDetails.description}
       </p>
-      <AddToCartForm />
+      <AddToCartForm details={productDetails}/>
       <div className="flex gap-x-2 mt-2 font-semibold">
         <p>Share on:</p>
       </div>
