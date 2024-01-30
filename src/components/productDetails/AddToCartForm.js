@@ -1,14 +1,14 @@
 import { Form } from "react-router-dom";
 import { MyRadioButton } from "../MyRadioButton";
 import { MyButtonsGroup } from "../MyButtonsGroup";
-import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { cartActions } from "../../store/cart-slice";
 
 export function AddToCartForm({ details }) {
   const dispatch = useDispatch();
-  const [number, setNumber] = useState(1);
-  const changeNumber = (numberGot) => setNumber(numberGot);
+  let number = 1;
+  const changeNumber = (numberGot) => (number = numberGot);
+
   const addToCartHandler = () => {
     dispatch(
       cartActions.addItemToCart({
@@ -55,7 +55,7 @@ export function AddToCartForm({ details }) {
           >
             <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z" />
           </svg>
-          Add To Cart 
+          Add To Cart
         </button>
       </div>
     </Form>

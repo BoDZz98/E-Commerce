@@ -6,12 +6,12 @@ import Newsletter from "./Newsletter";
 
 const Footer = () => {
   return (
-    <div className="items-center w-screen pt-28 bg-blue-100 px-28">
+    <div className=" w-screen pt-28 bg-blue-100 px-28">
       <Row className=" ">
         <Col className="flex flex-col gap-y-3">
           <Info />
         </Col>
-        <Col>
+        <Col  className="place-content-center bg-blue-500">
           <QuickLinks />
         </Col>
         <Col>

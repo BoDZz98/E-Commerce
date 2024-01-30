@@ -12,24 +12,34 @@ const cartSlice = createSlice({
     addItemToCart(state, action) {
       const newItem = action.payload;
 
-      const exisitingItem = state.items.find((item) => item.id === newItem.id);
-      state.totalCartPrice += newItem.price * newItem.quantity;
       state.changed = true;
-
-      if (!exisitingItem) {
-        state.totalQuantity += 1;
-        state.items.push({
-          id: newItem.id,
-          price: newItem.price,
-          quantity: newItem.quantity,
-          totalPrice: newItem.price * newItem.quantity,
-          name: newItem.title,
-          image: newItem.image,
-        });
-      } else {
-        exisitingItem.quantity += 1;
-        exisitingItem.totalPrice = exisitingItem.totalPrice + newItem.price;
+      const exisitingItem = state.items.find((item) => item.id === newItem.id);
+      // Remove it first if it exists
+      if (exisitingItem) {
+        state.totalCartPrice -= exisitingItem.totalPrice;
+        state.totalQuantity -= 1;
+        state.items = state.items.filter((item) => item.id !== newItem.id);
       }
+      state.totalCartPrice += newItem.price * newItem.quantity;
+      state.totalQuantity += 1;
+      state.items.push({
+        id: newItem.id,
+        price: newItem.price,
+        quantity: newItem.quantity,
+        totalPrice: newItem.price * newItem.quantity,
+        name: newItem.title,
+        image: newItem.image,
+      });
+    },
+    updateItemInCart(state, action) {
+      const updatedItem = action.payload;
+
+      const exisitingItem = state.items.find(
+        (item) => item.id === updatedItem.id
+      );
+      exisitingItem.quantity += 1;
+      state.totalCartPrice += updatedItem.price;
+      exisitingItem.totalPrice += updatedItem.price;
     },
     removeItemfromCart(state, action) {
       const id = action.payload.id;
@@ -61,3 +71,24 @@ const cartSlice = createSlice({
 
 export const cartActions = cartSlice.actions;
 export default cartSlice;
+
+/* const newItem = action.payload;
+
+      const exisitingItem = state.items.find((item) => item.id === newItem.id);
+      state.totalCartPrice += newItem.price * newItem.quantity;
+      state.changed = true;
+
+      if (!exisitingItem) {
+        state.totalQuantity += 1;
+        state.items.push({
+          id: newItem.id,
+          price: newItem.price,
+          quantity: newItem.quantity,
+          totalPrice: newItem.price * newItem.quantity,
+          name: newItem.title,
+          image: newItem.image,
+        });
+      } else {
+        exisitingItem.quantity += 1;
+        exisitingItem.totalPrice = exisitingItem.totalPrice + newItem.price;
+      } */

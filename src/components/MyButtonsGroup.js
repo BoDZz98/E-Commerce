@@ -8,42 +8,38 @@ export function MyButtonsGroup({ productDetails, inCart, onChange }) {
   const dispatch = useDispatch();
   const inc = () => {
     setNumber((prev) => {
-      if (prev === 5) {
-        return (prev = 5);
-      }
       const newNumber = (prev += 1);
+
+      if (newNumber > 5) {
+        return 5;
+      }
       inCart
         ? dispatch(
-            cartActions.addItemToCart({
-              quantity: 1,
+            cartActions.updateItemInCart({
               id: productDetails.id,
-              title: productDetails.title,
               price: productDetails.price,
-              image: productDetails.image,
             })
           )
         : onChange(newNumber);
-
       return newNumber;
     });
   };
   const dec = () =>
     setNumber((prev) => {
       const newNumber = (prev -= 1);
-
-      if (inCart) {
-        dispatch(
-          cartActions.removeItemfromCart({
-            id: productDetails.id,
-            price: productDetails.price,
-          })
-        );
-      } else {
-        if (prev === 0) {
-          return (prev = 1);
-        }
-        onChange(newNumber);
+      if (newNumber === 0 && !inCart) {
+        return 1;
       }
+
+      inCart
+        ? dispatch(
+            cartActions.removeItemfromCart({
+              id: productDetails.id,
+              price: productDetails.price,
+            })
+          )
+        : onChange(newNumber);
+
       return newNumber;
     });
   return (
