@@ -1,8 +1,8 @@
 import { Form } from "react-router-dom";
-import { MyRadioButton } from "../MyRadioButton";
 import { MyButtonsGroup } from "../MyButtonsGroup";
 import { useDispatch } from "react-redux";
 import { cartActions } from "../../store/cart-slice";
+import { MyRadioButton } from "../formComponents/MyRadioButton";
 
 export function AddToCartForm({ details }) {
   const dispatch = useDispatch();

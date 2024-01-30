@@ -1,0 +1,16 @@
+.cont {
+  height: 18rem;
+  background-color: rgb(252 165 165);
+  display: flex;
+  flex-direction: column;
+  /* VIP  */
+  justify-content: center; /* Main Axis */
+  align-items: center; /* Cross Axis */
+}
+
+.cont h1 {
+  font-size: 3rem /* 48px */;
+  line-height: 1;
+  font-weight: 800;
+  text-transform: uppercase;
+}

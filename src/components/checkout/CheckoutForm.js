@@ -2,7 +2,7 @@ import React from "react";
 import { Form } from "react-router-dom";
 import useInput from "../../hooks/use-input";
 import { Col, Row } from "react-bootstrap";
-import MyFormInput from "../MyFormInput";
+import MyFormInput from "../formComponents/MyFormInput";
 
 const CheckoutForm = () => {
   const {
@@ -78,9 +78,9 @@ const CheckoutForm = () => {
     : "border py-2 px-3";
 
   return (
-    <div>
-      <h3 className="mb-8 font-bold">Billing Adress</h3>
-      <Form className=" flex flex-col gap-y-4 w-5/6">
+    <div className="flex flex-col items-center xl:items-start ">
+      <h3 className="mb-8 font-bold  ">Billing Adress</h3>
+      <Form className=" gap-y-4 w-5/6">
         <Row>
           <Col>
             <MyFormInput

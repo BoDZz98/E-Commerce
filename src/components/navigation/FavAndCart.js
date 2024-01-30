@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 function FavAndCart() {
   const cartNumber = useSelector((state) => state.cart.totalQuantity);
   return (
-    <div className="flex  gap-x-2 ml-80">
+    <div className="flex gap-x-2 ">
       <Link to="/cart">
         <Button variant="outline-dark">
           <div className="flex gap-x-1">
@@ -24,25 +24,25 @@ function FavAndCart() {
         </Button>
       </Link>
 
-      <Link to='/cart'>
-      <Button variant="outline-dark">
-        <div className="flex gap-x-1">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="20"
-            height="20"
-            fill="currentColor"
-            class="bi bi-heart-fill"
-            viewBox="0 0 16 16"
-          >
-            <path
-              fill-rule="evenodd"
-              d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"
-            />
-          </svg>
-          0
-        </div>
-      </Button>
+      <Link to="/cart">
+        <Button variant="outline-dark">
+          <div className="flex gap-x-1">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="20"
+              height="20"
+              fill="currentColor"
+              class="bi bi-heart-fill"
+              viewBox="0 0 16 16"
+            >
+              <path
+                fill-rule="evenodd"
+                d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"
+              />
+            </svg>
+            0
+          </div>
+        </Button>
       </Link>
     </div>
   );

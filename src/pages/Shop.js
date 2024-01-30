@@ -1,25 +1,23 @@
 import { Fragment } from "react";
 import { Col, Container, Row } from "react-bootstrap";
-import MyBreadcrumb from "../components/shop/Breadcrumb";
 import { Filter } from "../components/shop/Filter";
 import { Products } from "../components/shop/Products";
 import { json, useLoaderData } from "react-router-dom";
+import MyBreadcrumb from "../components/MyBreadcrumb";
 
 function Shop() {
   const data = useLoaderData();
-  
+
   return (
     <Fragment>
-      
-      <MyBreadcrumb />
-      <div className="h-28"></div>
-      <Container fluid>
+      <MyBreadcrumb title="our shop" subTitle="Shop" />
+      <Container className="my-28">
         <Row>
-          <Col xl={3}>
+          <Col xl={2} >
             <Filter />
           </Col>
-          <Col xl={8} >
-            <Products productsDetails={data}/>
+          <Col xl={10} >
+            <Products productsDetails={data} />
           </Col>
         </Row>
       </Container>
@@ -28,7 +26,6 @@ function Shop() {
 }
 
 export default Shop;
-
 
 export async function productsLoader() {
   const response = await fetch("https://dummyjson.com/products?limit=10");
@@ -39,7 +36,7 @@ export async function productsLoader() {
     return json({ message: "could not fetch" }, { status: 500 });
   } else {
     const resData = await response.json();
-   
+
     // console.log(resData);
     return resData.products;
   }
