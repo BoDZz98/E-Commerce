@@ -10,7 +10,6 @@ import ErrorPage from "./pages/ErrorPage";
 import { ProductDetails, detailsLoader } from "./pages/ProductDetails";
 import { Cart } from "./pages/Cart";
 import Checkout from "./pages/Checkout";
-import { getAuthToken, logoutAction } from "./utils/authToken";
 
 const myRouter = createBrowserRouter([
   {
@@ -18,8 +17,6 @@ const myRouter = createBrowserRouter([
     element: <Root />,
     errorElement: <ErrorPage />,
     id: "root",
-    loader: getAuthToken,
-    action: logoutAction,
     children: [
       { index: true, element: <HomePage /> },
       { path: "shop", element: <Shop />, loader: productsLoader },
@@ -33,8 +30,12 @@ const myRouter = createBrowserRouter([
       { path: "checkout", element: <Checkout /> },
     ],
   },
-  { path: "/login", element: <Login />, action: loginAction },
-  { path: "signUp", element: <SignUp />, action: registerAction },
+  {
+    path: "/login",
+    element: <Login />,
+    errorElement: <ErrorPage />,
+    action: loginAction,
+  },
 ]);
 function App() {
   return <RouterProvider router={myRouter} />;

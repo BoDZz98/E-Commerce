@@ -2,10 +2,21 @@ import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import NavDropdown from "react-bootstrap/NavDropdown";
 import { NavLink, useRouteLoaderData, Link, Form } from "react-router-dom";
-import { logoutAction } from "../../utils/authToken";
+import { useDispatch, useSelector } from "react-redux";
+import { authActions } from "../../store/auth-slice";
+import { signOut } from "firebase/auth";
+import { auth } from "../../firebase-config";
 
 function NavBar() {
-  const token = useRouteLoaderData("root");
+  // const token = useRouteLoaderData("root");
+  const isAuth = useSelector((state) => state.auth.isAuth);
+  const dispatch = useDispatch();
+
+  const logoutHandler = async () => {
+    dispatch(authActions.logout());
+    await signOut(auth);
+  };
+  // --------------------------------------------------------------------------
   return (
     <Navbar className="text-black">
       <Navbar.Toggle aria-controls="navbarScroll" />
@@ -69,19 +80,16 @@ function NavBar() {
             <Nav.Link className="text-black fs-5 ">Contact</Nav.Link>
           </NavLink>
         </Nav>
-        {!token ? (
+        {!isAuth ? (
           <Nav>
-            <Link to="login">
+            <Link className="no-underline" to="login">
               <Nav.Link href="/">Login</Nav.Link>
-            </Link>
-            <Link to="signUp">
-              <Nav.Link href="/">Register</Nav.Link>
             </Link>
           </Nav>
         ) : (
-          <Form method="Post">
-            <button type="submit" onClick={logoutAction}>Logout</button>
-          </Form>
+          <button type="submit" onClick={logoutHandler}>
+            Logout
+          </button>
         )}
       </Navbar.Collapse>
     </Navbar>

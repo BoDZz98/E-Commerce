@@ -1,31 +1,58 @@
-import { Form, Link, json, redirect, useActionData } from "react-router-dom";
+import {
+  Form,
+  Link,
+  json,
+  redirect,
+  useActionData,
+  useNavigate,
+} from "react-router-dom";
 import useInput from "../hooks/use-input";
 import { auth, googleAuthProvider } from "../firebase-config";
-import { signInWithEmailAndPassword, signInWithPopup } from "firebase/auth";
+import {
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+  signInWithPopup,
+} from "firebase/auth";
 import Logo from "../components/Logo";
 import MyFormInput from "../components/formComponents/MyFormInput";
 import googleLogo from "../imgs/google.png";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
+import { authActions } from "../store/auth-slice";
 
-async function handleLogin() {
-  try {
-    const result = await signInWithPopup(auth, googleAuthProvider);
-    console.log(result);
-  } catch (error) {}
-}
+async function handleLogin() {}
 // -----------------------------------------------------------------------------------
 function Login() {
   const data = useActionData();
-  console.log("data is -> ", data);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
   const [isSigingUp, setSigingUp] = useState(false);
 
+  if (data?.user.uid) {
+    // console.log("data is -> ", data?.user.uid);
+    dispatch(authActions.login());
+    navigate("/");
+  }
+
+  async function handleLogin() {
+    try {
+      const result = await signInWithPopup(auth, googleAuthProvider);
+      // console.log(result);
+      dispatch(authActions.login());
+      navigate("/");
+    } catch (error) {
+      console.log("error in Login.js :", error);
+    }
+  }
+
+  // Custim Hooks for input ------------------------------------------------------------------
   const {
     value: enteredFirstName,
     isValid: enteredNameIsValid,
     hasError: nameInputHasError,
     valueChangeHandler: nameChangeHandler,
     inputBlurHanlder: nameBlurHandler,
-  } = useInput((value) => value.trim().length > 6);
+  } = useInput((value) => value.trim().length > 3);
 
   const {
     value: enteredPassword,
@@ -130,17 +157,26 @@ export default Login;
 export async function loginAction({ request, params }) {
   const data = await request.formData();
 
+  const enteredName = data.get("name");
   const enteredEmail = data.get("email");
   const enteredPassword = data.get("password");
-  console.log("email", enteredEmail, "passowrd ", enteredPassword);
+  // console.log("email", enteredEmail, "passowrd ", enteredPassword);
   try {
-    const response = await signInWithEmailAndPassword(
-      auth,
-      enteredEmail,
-      enteredPassword
-    );
-    console.log("response --- >", response.user);
-    return response;
+    if (enteredName) {
+      return await createUserWithEmailAndPassword(
+        auth,
+        enteredEmail,
+        enteredPassword
+      );
+    } else {
+      return await signInWithEmailAndPassword(
+        auth,
+        enteredEmail,
+        enteredPassword
+      );
+      // console.log("response --- >", response.user);
+      // return response;
+    }
   } catch (error) {
     // return to the nearest element error
     console.log(error);
