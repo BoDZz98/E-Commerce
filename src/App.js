@@ -23,8 +23,7 @@ const myRouter = createBrowserRouter([
     children: [
       { index: true, element: <HomePage /> },
       { path: "shop", element: <Shop />, loader: productsLoader },
-      { path: "login", element: <Login />, action: loginAction },
-      { path: "signUp", element: <SignUp />, action: registerAction },
+      // { path: "login", element: <Login />, action: loginAction },
       {
         path: "shop/:productId",
         element: <ProductDetails />,
@@ -34,6 +33,8 @@ const myRouter = createBrowserRouter([
       { path: "checkout", element: <Checkout /> },
     ],
   },
+  { path: "/login", element: <Login />, action: loginAction },
+  { path: "signUp", element: <SignUp />, action: registerAction },
 ]);
 function App() {
   return <RouterProvider router={myRouter} />;

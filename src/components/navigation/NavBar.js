@@ -2,6 +2,7 @@ import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import NavDropdown from "react-bootstrap/NavDropdown";
 import { NavLink, useRouteLoaderData, Link, Form } from "react-router-dom";
+import { logoutAction } from "../../utils/authToken";
 
 function NavBar() {
   const token = useRouteLoaderData("root");
@@ -79,7 +80,7 @@ function NavBar() {
           </Nav>
         ) : (
           <Form method="Post">
-            <button type="submit" /* onClick={logoutAction} */>Logout</button>
+            <button type="submit" onClick={logoutAction}>Logout</button>
           </Form>
         )}
       </Navbar.Collapse>

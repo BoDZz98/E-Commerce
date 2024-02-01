@@ -2,7 +2,7 @@ import React from "react";
 import { Form } from "react-router-dom";
 import useInput from "../../hooks/use-input";
 import { Col, Row } from "react-bootstrap";
-import MyFormInput from "../formComponents/MyFormInput";
+import MyFormInput2 from "../formComponents/MyFormInput2";
 
 const CheckoutForm = () => {
   const {
@@ -83,7 +83,7 @@ const CheckoutForm = () => {
       <Form className=" gap-y-4 w-5/6">
         <Row>
           <Col>
-            <MyFormInput
+            <MyFormInput2
               type="text"
               id="adress1"
               label="Address Line 1"
@@ -97,7 +97,7 @@ const CheckoutForm = () => {
             />
           </Col>
           <Col>
-            <MyFormInput
+            <MyFormInput2
               type="text"
               id="adress2"
               label="Address Line 2"
@@ -113,7 +113,7 @@ const CheckoutForm = () => {
         </Row>
         <Row>
           <Col>
-            <MyFormInput
+            <MyFormInput2
               type="text"
               id="country"
               label="Country"
@@ -127,7 +127,7 @@ const CheckoutForm = () => {
             />
           </Col>
           <Col>
-            <MyFormInput
+            <MyFormInput2
               type="text"
               id="City"
               label="City"
@@ -143,7 +143,7 @@ const CheckoutForm = () => {
         </Row>
         <Row>
           <Col>
-            <MyFormInput
+            <MyFormInput2
               type="number"
               id="mobile"
               label="mobile"
@@ -157,7 +157,7 @@ const CheckoutForm = () => {
             />
           </Col>
           <Col>
-            <MyFormInput
+            <MyFormInput2
               type="number"
               id="zipCode"
               label="Zip Code"
