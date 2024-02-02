@@ -5,7 +5,7 @@ import Root from "./layouts/Root";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Login, { loginAction } from "./pages/Login";
 import SignUp, { registerAction } from "./pages/SignUp";
-import Shop, { productsLoader } from "./pages/Shop";
+import Shop from "./pages/Shop";
 import ErrorPage from "./pages/ErrorPage";
 import { ProductDetails, detailsLoader } from "./pages/ProductDetails";
 import { Cart } from "./pages/Cart";
@@ -19,7 +19,7 @@ const myRouter = createBrowserRouter([
     id: "root",
     children: [
       { index: true, element: <HomePage /> },
-      { path: "shop", element: <Shop />, loader: productsLoader },
+      { path: "shop", element: <Shop /> },
       // { path: "login", element: <Login />, action: loginAction },
       {
         path: "shop/:productId",
