@@ -10,6 +10,7 @@ import ErrorPage from "./pages/ErrorPage";
 import { ProductDetails, detailsLoader } from "./pages/ProductDetails";
 import { Cart } from "./pages/Cart";
 import Checkout from "./pages/Checkout";
+import { searchAction } from "./components/navigation/Search";
 
 const myRouter = createBrowserRouter([
   {
@@ -17,10 +18,10 @@ const myRouter = createBrowserRouter([
     element: <Root />,
     errorElement: <ErrorPage />,
     id: "root",
+    action: searchAction,
     children: [
       { index: true, element: <HomePage /> },
       { path: "shop", element: <Shop /> },
-      // { path: "login", element: <Login />, action: loginAction },
       {
         path: "shop/:productId",
         element: <ProductDetails />,

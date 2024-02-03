@@ -3,6 +3,8 @@ import { useSelector } from "react-redux";
 
 const CheckoutSummary = () => {
   const cartTotalPrice = useSelector((state) => state.cart.totalCartPrice);
+  const cartItems = useSelector((state) => state.cart.items);
+  console.log(cartItems);
   const shippingPrice = cartTotalPrice === 0 ? 0 : 50;
 
   return (
@@ -19,10 +21,13 @@ const CheckoutSummary = () => {
           <tr>
             <td class="px-6 font-normal">Products</td>
           </tr>
-          <tr class="border-b ">
-            <td class="px-6 py-4 font-normal">Subtotal</td>
-            <td class="flex justify-end px-6 py-4">$150</td>
-          </tr>
+
+          {cartItems.map((item) => (
+            <tr class="border-b ">
+              <td class="px-6 py-4 font-normal">{item.name}</td>
+              <td class="flex justify-end px-6 py-4">${item.price}</td>
+            </tr>
+          ))}
           <tr class="border-b ">
             <td class="px-6 py-4 font-normal">
               Subtotal <br />

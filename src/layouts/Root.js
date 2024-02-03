@@ -1,4 +1,4 @@
-import { Fragment, useEffect } from "react";
+import { useEffect } from "react";
 import { Outlet, json } from "react-router-dom";
 import MainNavigation from "../components/navigation/MainNavigation";
 import Footer from "../components/footer";
@@ -16,7 +16,7 @@ function Root() {
       dispatch(authActions.setData(data));
     }
     getData();
-  }, []);
+  }, [dispatch]);
   // Manage the auth state --------------------------------------------------------------
   onAuthStateChanged(auth, (user) => {
     if (user) {
@@ -39,7 +39,7 @@ export default Root;
 
 export async function productsLoader() {
   const response = await fetch(
-    "http://makeup-api.herokuapp.com/api/v1/products.json?price_greater_than=1"
+    "http://makeup-api.herokuapp.com/api/v1/products.json?price_greater_than=1&rating_greater_than=1"
   );
 
   if (!response.ok) {

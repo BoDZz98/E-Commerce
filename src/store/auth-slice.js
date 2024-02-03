@@ -16,7 +16,7 @@ const authSlice = createSlice({
     setData(state, action) {
       const data = action.payload;
       state.initData = data;
-      console.log("initdata is : ", state.initData);
+      // console.log("initdata is : ", state.initData);
     },
   },
 });
