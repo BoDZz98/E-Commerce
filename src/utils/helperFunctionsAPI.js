@@ -70,6 +70,7 @@ const ALL_PRODUCT_TYPES = [
   "mascara",
   "nail polish",
 ];
+export const ALLITEMS = ALL_BRANDS.concat(ALL_PRODUCT_TYPES);
 
 export function checkIfBrand(name) {
   return ALL_BRANDS.includes(name);

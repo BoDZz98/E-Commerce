@@ -1,13 +1,27 @@
 import { Form } from "react-router-dom";
 import {
+  ALLITEMS,
   checkIfBrand,
   checkIfProduct,
-  isBrand,
 } from "../../utils/helperFunctionsAPI";
+import { useState } from "react";
 
 function Search() {
+  const [inputHanlder, setInputHanlder] = useState();
+  const [filteredItems, setFilteredItems] = useState();
+
+  function changeHandler(e) {
+    setInputHanlder(e.target.value);
+    if (inputHanlder?.length >= 2) {
+      const newData = ALLITEMS.filter((item) => {
+        return item.toLowerCase().includes(inputHanlder?.toLowerCase());
+      });
+      console.log(newData);
+      setFilteredItems(newData);
+    }
+  }
   return (
-    <Form method="Post">
+    <Form method="Post" className="relative ">
       <div class="relative">
         <div class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
           <svg
@@ -27,8 +41,11 @@ function Search() {
           </svg>
         </div>
         <input
+          data-dropdown-toggle="dropdown"
           name="search"
           type="search"
+          value={inputHanlder}
+          onChange={changeHandler}
           id="default-search"
           class="shadow block w-full py-3 px-8 ps-10 text-sm text-gray-900 border rounded-lg bg-gray-300 focus:ring-blue-500 focus:border-blue-500  "
           placeholder="Search product type, brand..."
@@ -41,6 +58,28 @@ function Search() {
         >
           Search
         </button>
+
+        <div
+          className="z-10 absolute w-full bg-white  rounded-lg shadow "
+          id="dropdown"
+        >
+          {filteredItems && (
+            <div className=" py-2  w-full text-sm text-gray-700 ">
+              {filteredItems.map((item) => (
+                <li
+                  className="block py-2 px-8 w-full hover:bg-gray-200 "
+                  id={item}
+                  onClick={() => {
+                    setInputHanlder(item);
+                    setFilteredItems();
+                  }}
+                >
+                  {item}
+                </li>
+              ))}
+            </div>
+          )}
+        </div>
       </div>
     </Form>
   );
