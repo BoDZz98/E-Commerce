@@ -4,22 +4,26 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import FourIcons from "../components/homePage/FourIcons";
 import ProductCategories from "../components/homePage/ProductCategories";
-
+import background from "../imgs/background2.jpg";
+import NewArrivals from "../components/homePage/NewArrivals";
+import WhyUs from "../components/homePage/WhyUs";
+import BestSelling from "../components/homePage/BestSelling";
 function HomePage() {
   return (
-    <Container>
-      <Row>
-        <Col xl={2}></Col>
-        <Col className="bg-gray-100 h-96">
-          <MyCarousel />
-        </Col>
-      </Row>
-      <Row>
-        <FourIcons />
-      </Row>
-      <Row>
-        <ProductCategories />
-      </Row>
+    <Container className="flex flex-col gap-y-28">
+      <div className="relative h-96 w-full flex items-center justify-center rounded-2xl overflow-hidden ">
+        <img
+          src={background}
+          className="h-full w-full absolute opacity-80"
+        ></img>
+        <p className="z-10">hellsssssssssssssssssssssssssso</p>
+      </div>
+
+      <FourIcons />
+      <NewArrivals />
+      <WhyUs />
+      <BestSelling />
+      {/* <ProductCategories /> */}
     </Container>
   );
 }
