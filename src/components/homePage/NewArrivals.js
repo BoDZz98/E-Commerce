@@ -1,5 +1,6 @@
 import React from "react";
 import { useSelector } from "react-redux";
+import ProductItem from "../ui/ProductItem";
 
 const NewArrivals = () => {
   const data = useSelector((state) => state.auth.initData)?.slice(0, 5);
@@ -12,14 +13,7 @@ const NewArrivals = () => {
       </h6>
       <div className=" h-64 w-full flex gap-x-10">
         {data.map((item) => (
-          <div className="border-4 h-full w-1/4 rounded-xl p-3 flex flex-col">
-            <img
-              className="h-2/3 w-3/4 object-fill rounded place-self-center"
-              src={item.api_featured_image}
-            ></img>
-            <h6>{item.name}</h6>
-            <h6 className=" place-self-end">$ 400</h6>
-          </div>
+          <ProductItem item={item} cardSize="w-1/4" imgSize="h-2/3 w-3/4 " />
         ))}
       </div>
     </div>

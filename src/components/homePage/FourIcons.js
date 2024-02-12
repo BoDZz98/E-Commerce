@@ -4,16 +4,16 @@ const DATA = [
     desc: "Provide 30 days easy return policy for all of our cusomers",
   },
   {
-    title: "Easy return Policy",
-    desc: "Provide 30 days easy return policy for all of our cusomers",
+    title: "Free Shipping",
+    desc: "Buy products over $ 100 will get free shipping on the same day.",
   },
   {
-    title: "Easy return Policy",
-    desc: "Provide 30 days easy return policy for all of our cusomers",
+    title: "Secure Payment",
+    desc: "We conforn you that payment system is totally secure",
   },
   {
-    title: "Easy return Policy",
-    desc: "Provide 30 days easy return policy for all of our cusomers",
+    title: "Best Quality",
+    desc: "We never compromise about our quality and always concern abour our customer",
   },
 ];
 
