@@ -2,7 +2,7 @@ import { Fragment, useState } from "react";
 import { Col, Container, Row } from "react-bootstrap";
 import { Filter } from "../components/shop/Filter";
 import { Products } from "../components/shop/Products";
-import MyBreadcrumb from "../components/MyBreadcrumb";
+import MyBreadcrumb from "../components/ui/MyBreadcrumb";
 import { useSelector } from "react-redux";
 
 function Shop() {

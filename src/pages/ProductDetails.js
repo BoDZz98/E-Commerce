@@ -4,7 +4,7 @@ import ProductDetailsCarousel from "../components/productDetails/Carousel";
 import { Details } from "../components/productDetails/Details";
 import { MyTabs } from "../components/productDetails/Tabs";
 import { json, useLoaderData } from "react-router-dom";
-import MyBreadcrumb from "../components/MyBreadcrumb";
+import MyBreadcrumb from "../components/ui/MyBreadcrumb";
 
 export function ProductDetails() {
   const details = useLoaderData();

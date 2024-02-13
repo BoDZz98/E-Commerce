@@ -13,7 +13,7 @@ import {
   signInWithEmailAndPassword,
   signInWithPopup,
 } from "firebase/auth";
-import Logo from "../components/Logo";
+import Logo from "../components/ui/Logo";
 import MyFormInput from "../components/formComponents/MyFormInput";
 import googleLogo from "../imgs/google.png";
 import { useEffect, useState } from "react";

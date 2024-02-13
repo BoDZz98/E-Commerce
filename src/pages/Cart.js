@@ -4,7 +4,7 @@ import { CartTable } from "../components/cart/CartTable";
 import { CartSummary } from "../components/cart/CartSummary";
 import { useSelector } from "react-redux";
 import EmptyCart from "../components/cart/EmptyCart";
-import MyBreadcrumb from "../components/MyBreadcrumb";
+import MyBreadcrumb from "../components/ui/MyBreadcrumb";
 
 export function Cart() {
   const cartSize = useSelector((state) => state.cart.totalQuantity);

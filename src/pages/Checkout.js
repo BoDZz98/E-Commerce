@@ -2,7 +2,7 @@ import React, { Fragment } from "react";
 import { Col, Container, Row } from "react-bootstrap";
 import CheckoutSummary from "../components/checkout/CheckoutSummary";
 import CheckoutForm from "../components/checkout/CheckoutForm";
-import MyBreadcrumb from "../components/MyBreadcrumb";
+import MyBreadcrumb from "../components/ui/MyBreadcrumb";
 
 const Checkout = () => {
   return (
