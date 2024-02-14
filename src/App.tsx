@@ -4,7 +4,6 @@ import HomePage from "./pages/HomePage";
 import Root from "./layouts/Root";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Login, { loginAction } from "./pages/Login";
-import SignUp, { registerAction } from "./pages/SignUp";
 import Shop from "./pages/Shop";
 import ErrorPage from "./pages/ErrorPage";
 import { ProductDetails, detailsLoader } from "./pages/ProductDetails";

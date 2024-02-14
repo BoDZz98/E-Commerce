@@ -3,10 +3,18 @@ import { MyButtonsGroup } from "../ui/MyButtonsGroup";
 import { useDispatch, useSelector } from "react-redux";
 import { cartActions } from "../../store/cart-slice";
 
+type CartItem = {
+  id: string;
+  name: string;
+  image: string;
+  price: number;
+  totalPrice: number;
+};
+
 export function CartTable() {
   const cartItems = useSelector((state: any) => state.cart.items);
   const dispatch = useDispatch();
-  const deleteCartItem = (id: any) =>
+  const deleteCartItem = (id: string) =>
     dispatch(cartActions.deleteItemFromCart(id));
 
   return (
@@ -31,7 +39,7 @@ export function CartTable() {
         </tr>
       </thead>
       <tbody>
-        {cartItems.map((cartItem: any) => (
+        {cartItems.map((cartItem: CartItem) => (
           <tr className="border-b " key={cartItem.id}>
             <td className=" border-r px-6 py-4 font-medium ">
               <div className="flex gap-x-2 justify-evenly items-center">

@@ -1,37 +1,45 @@
 import MinMaxFilter from "./MinMaxFilter";
-import { useState } from "react";
+import React, { useState } from "react";
 
-export function Filter({ searchHandler }) {
+type Event = React.ChangeEvent<HTMLInputElement>;
+type FilterProps = {
+  searchHandler: ({}: {
+    filterType: string;
+    minValue: number;
+    maxValue: number;
+  }) => void;
+};
+export function Filter({ searchHandler }: FilterProps) {
   // Price Filter -------------------------------------------------------------------------------
   const [minPrice, setMinPrice] = useState(1);
   const [maxPrice, setMaxPrice] = useState(100);
-  function minValueHandler(event) {
-    if (event.target.value <= 0 || event.target.value > parseInt(maxPrice) - 1)
-      return;
-    setMinPrice(event.target.value);
+  function minValueHandler(event: Event) {
+    const value = parseInt(event.target.value);
+    if (value <= 0 || value > maxPrice - 1) return;
+    setMinPrice(value);
   }
-  function maxValueHandler(event) {
-    if (event.target.value > 100 || event.target.value < parseInt(minPrice) + 1)
-      return;
-    setMaxPrice(event.target.value);
+  function maxValueHandler(event: Event) {
+    const value = parseInt(event.target.value);
+    if (value > 100 || value < minPrice + 1) return;
+    setMaxPrice(value);
   }
   // Rating Filter -------------------------------------------------------------------------------
   const [minStar, setMinStar] = useState(1);
   const [maxStar, setMaxStar] = useState(5);
-  function minRatingeHandler(event) {
-    if (event.target.value <= 0 || event.target.value > parseInt(maxStar) - 1)
-      return;
-      setMinStar(event.target.value);
+  function minRatingeHandler(event: Event) {
+    const value = parseInt(event.target.value);
+    if (value <= 0 || value > maxStar - 1) return;
+    setMinStar(value);
   }
-  function maxRatingHandler(event) {
-    if (event.target.value > 5 || event.target.value < parseInt(minStar) + 1)
-      return;
-      setMaxStar(event.target.value);
+  function maxRatingHandler(event: Event) {
+    const value = parseInt(event.target.value);
+    if (value > 5 || value < minStar + 1) return;
+    setMaxStar(value);
   }
   // -------------------------------------------------------------------------------
   return (
     <div className=" flex flex-col">
-      <h3 className="mb-4"> Filter by price</h3>
+      <h3 className="mb-4">Filter by price</h3>
       <MinMaxFilter
         min={1}
         max={100}

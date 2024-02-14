@@ -5,12 +5,25 @@ import { Products } from "../components/shop/Products";
 import MyBreadcrumb from "../components/ui/MyBreadcrumb";
 import { useSelector } from "react-redux";
 
+interface State {
+  auth: {
+    initData: Array<{}>;
+    // other properties of the cart if any
+  };
+  // other properties of the root state if any
+}
+
 function Shop() {
-  const data = useSelector((state) => state.auth.initData);
-  const [filteredData, setFilteredData] = useState([]);
+  const data = useSelector((state: State) => state.auth.initData);
+  const [filteredData, setFilteredData] = useState<Array<{}>>([]);
   //
-  const filterHandler = async (searchData) => {
-    const newData = data.filter((product) => {
+  const filterHandler = async (searchData: {
+    filterType: string;
+    minValue: number;
+    maxValue: number;
+  }) => {
+    const newData = data.filter((product: { [key: string]: number }) => {
+      console.log(product);
       return (
         parseInt(product[searchData.filterType].toFixed(0)) >=
           searchData.minValue &&

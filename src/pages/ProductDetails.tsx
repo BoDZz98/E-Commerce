@@ -7,10 +7,10 @@ import { json, useLoaderData } from "react-router-dom";
 import MyBreadcrumb from "../components/ui/MyBreadcrumb";
 
 export function ProductDetails() {
-  const details = useLoaderData();
+  const details: any = useLoaderData();
   const imgs = details.images;
   return (
-    <Fragment fluid>
+    <Fragment>
       <MyBreadcrumb title="product details" subTitle="Shop" />
       <Container className="mt-28">
         <Row>
@@ -30,13 +30,13 @@ export function ProductDetails() {
 }
 
 // REQUEST is used to get formdata and other stuff, PARAMS to get the paramaters passed to the url
-export async function detailsLoader({ request, params }) {
+export async function detailsLoader({ params }: any): Promise<{}> {
   const id = params.productId;
   const response = await fetch("https://dummyjson.com/products/" + id);
   if (!response.ok) {
     throw json({ message: "no details for this Product" }, { status: 500 });
   } else {
-    const data = await response.json();
+    const data: {} = await response.json();
 
     return data;
   }

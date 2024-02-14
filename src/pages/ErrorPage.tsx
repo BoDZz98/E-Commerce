@@ -2,7 +2,7 @@ import { useRouteError } from "react-router-dom";
 import MainNavigation from "../components/navigation/MainNavigation";
 function ErrorPage() {
   // this is used to get the data in the response we threw
-  const error = useRouteError();
+  const error: any = useRouteError();
   let title = "An error occured";
   let message = "sth went wrong";
   if (error.status === 500) {

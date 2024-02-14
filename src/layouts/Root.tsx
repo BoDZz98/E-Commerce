@@ -37,7 +37,7 @@ function Root() {
 
 export default Root;
 
-export async function productsLoader() {
+export async function productsLoader(): Promise<Array<{}>> {
   const response = await fetch(
     "http://makeup-api.herokuapp.com/api/v1/products.json?price_greater_than=1&rating_greater_than=1"
   );
@@ -45,7 +45,9 @@ export async function productsLoader() {
   if (!response.ok) {
     // return { isError: true, message: "could not fetch events" };
     // this return statement will trigger the closest error element ,which is in the root
-    return json({ message: "could not fetch" }, { status: 500 });
+
+    return [];
+    // return json({ message: "could not fetch" }, { status: 500 });
   } else {
     const resData = await response.json();
 

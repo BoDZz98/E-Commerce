@@ -16,14 +16,14 @@ import {
 import Logo from "../components/ui/Logo";
 import MyFormInput from "../components/formComponents/MyFormInput";
 import googleLogo from "../imgs/google.png";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { authActions } from "../store/auth-slice";
 
 async function handleLogin() {}
 // -----------------------------------------------------------------------------------
 function Login() {
-  const data = useActionData();
+  const data: any = useActionData();
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [isSigingUp, setSigingUp] = useState(false);
@@ -84,7 +84,7 @@ function Login() {
   return (
     <div className=" flex justify-center  w-screen h-screen bg-gradient-to-r from-cyan-500 to-blue-500">
       <Form
-        method="Post"
+        method="post"
         className="flex flex-col gap-y-4 w-fit h-fit mt-28 bg-white p-20 rounded-xl relative"
       >
         <Logo />
@@ -142,7 +142,11 @@ function Login() {
         <div className="text-xs absolute bottom-3 left-0 text-center w-full">
           <p>
             {isSigingUp ? "Already Registerd" : "Don't Have An Account"}
-            <Link className="ml-1" onClick={() => setSigingUp(!isSigingUp)}>
+            <Link
+              className="ml-1"
+              onClick={() => setSigingUp(!isSigingUp)}
+              to=""
+            >
               {isSigingUp ? "Login" : "Register"}
             </Link>
           </p>
@@ -154,7 +158,7 @@ function Login() {
 
 export default Login;
 
-export async function loginAction({ request, params }) {
+export async function loginAction({ request, params }: any) {
   const data = await request.formData();
 
   const enteredName = data.get("name");
@@ -177,7 +181,7 @@ export async function loginAction({ request, params }) {
       // console.log("response --- >", response.user);
       // return response;
     }
-  } catch (error) {
+  } catch (error: any) {
     // return to the nearest element error
     console.log(error);
     throw json({ message: error.message }, { status: 500 });

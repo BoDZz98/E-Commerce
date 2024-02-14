@@ -6,8 +6,16 @@ import { useSelector } from "react-redux";
 import EmptyCart from "../components/cart/EmptyCart";
 import MyBreadcrumb from "../components/ui/MyBreadcrumb";
 
+interface RootState {
+  cart: {
+    totalQuantity: number;
+    // other properties of the cart if any
+  };
+  // other properties of the root state if any
+}
+
 export function Cart() {
-  const cartSize = useSelector((state) => state.cart.totalQuantity);
+  const cartSize = useSelector((state: RootState) => state.cart.totalQuantity);
 
   return (
     <Fragment>
@@ -17,11 +25,7 @@ export function Cart() {
           <Col md={12} xl={8}>
             {cartSize !== 0 ? <CartTable /> : <EmptyCart />}
           </Col>
-          <Col
-            md={12}
-            xl={4}
-            className=" flex justify-center items-center "
-          >
+          <Col md={12} xl={4} className=" flex justify-center items-center ">
             <CartSummary />
           </Col>
         </Row>

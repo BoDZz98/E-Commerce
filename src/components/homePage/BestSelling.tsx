@@ -1,8 +1,13 @@
-import React from "react";
 import { Col } from "react-bootstrap";
 import { useSelector } from "react-redux";
 import ProductItem from "../ui/ProductItem";
 
+type Item = {
+  id: string;
+  api_featured_image: string;
+  name: string;
+  price: string;
+};
 const BestSelling = () => {
   const data = useSelector((state: any) => state.auth.initData)?.slice(5, 11);
 
@@ -16,7 +21,7 @@ const BestSelling = () => {
       </div>
       {/* <div className="flex justify-center bg-red-200"> */}
       <div className="gap-y-10 grid grid-cols-1 md:grid-cols-2 justify-items-center">
-        {data.map((item: {}) => (
+        {data.map((item: Item) => (
           <ProductItem
             item={item}
             cardSize="w-3/5"

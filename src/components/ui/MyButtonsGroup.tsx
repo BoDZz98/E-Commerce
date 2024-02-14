@@ -2,9 +2,19 @@ import { Fragment, useState } from "react";
 import { useDispatch } from "react-redux";
 import { cartActions } from "../../store/cart-slice";
 
-export function MyButtonsGroup({ productDetails, inCart, onChange }) {
+type MyButtonsGroupProps = {
+  productDetails: { quantity?: number; id: string; price: number };
+  inCart: boolean;
+  onChange: (num: number) => void;
+};
+
+export function MyButtonsGroup({
+  productDetails,
+  inCart,
+  onChange,
+}: MyButtonsGroupProps) {
   const defNumber = inCart ? productDetails.quantity : 1;
-  const [number, setNumber] = useState(defNumber);
+  const [number, setNumber] = useState<number>(defNumber!);
   const dispatch = useDispatch();
   const inc = () => {
     setNumber((prev) => {

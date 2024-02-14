@@ -1,4 +1,16 @@
-const ProductItem = ({ item, cardSize, imgSize, textSize }: any) => {
+type ProductItemProps = {
+  item: { id: string; api_featured_image: string; name: string; price: string };
+  cardSize: string;
+  imgSize: string;
+  textSize: string;
+};
+
+const ProductItem = ({
+  item,
+  cardSize,
+  imgSize,
+  textSize,
+}: ProductItemProps) => {
   return (
     <div
       className={`border-4 rounded-xl p-3 flex flex-col shadow  ${cardSize} transition transform duration-500 ease-in-out  hover:-translate-y-1 hover:scale-110 `}

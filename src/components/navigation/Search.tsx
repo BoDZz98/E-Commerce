@@ -7,18 +7,22 @@ import {
 import { useState } from "react";
 
 function Search() {
-  const [inputHanlder, setInputHanlder] = useState();
-  const [filteredItems, setFilteredItems] = useState();
+  const [inputHanlder, setInputHanlder] = useState("");
+  const [filteredItems, setFilteredItems] = useState<Array<string> | null>(
+    null
+  );
 
-  function changeHandler(e: any) {
-    /* setInputHanlder(e.target.value);
-    if (inputHanlder?.length >= 2) {
+  function changeHandler(e: React.ChangeEvent<HTMLInputElement>) {
+    setInputHanlder(e.target.value);
+    if (inputHanlder.length >= 2) {
       const newData = ALLITEMS.filter((item) => {
-        return item.toLowerCase().includes(inputHanlder?.toLowerCase());
+        return item.toLowerCase().includes(inputHanlder.toLowerCase());
       });
       console.log(newData);
       setFilteredItems(newData);
-    } */
+    } else {
+      setFilteredItems(null);
+    }
   }
   return (
     <Form method="post" className="relative ">
@@ -65,18 +69,18 @@ function Search() {
         >
           {filteredItems && (
             <div className=" py-2  w-full text-sm text-gray-700 ">
-              {/* {filteredItems.map((item: any) => (
+              {filteredItems.map((item: string) => (
                 <li
                   className="block py-2 px-8 w-full hover:bg-gray-200 "
                   id={item}
                   onClick={() => {
                     setInputHanlder(item);
-                    setFilteredItems();
+                    setFilteredItems(null);
                   }}
                 >
                   {item}
                 </li>
-              ))} */}
+              ))}
             </div>
           )}
         </div>
@@ -87,13 +91,7 @@ function Search() {
 
 export default Search;
 
-export async function searchAction({
-  request,
-  params,
-}: {
-  request: any;
-  params: any;
-}) {
+export async function searchAction({ request }: { request: any }) {
   const data = await request.formData();
   const enteredText = data.get("search");
   const isBrand = checkIfBrand(enteredText.toLowerCase());

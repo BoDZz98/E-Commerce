@@ -42,7 +42,7 @@ export function ReviewForm() {
           name="desc"
           className={`rounded p-2 h-28 ${descClass}`}
           value={enteredDesc}
-          onChange={descChangeHandler}
+          // onChange={descChangeHandler}
           onBlur={descBlurHandler}
         />
         {descHasError && (
