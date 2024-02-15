@@ -22,7 +22,7 @@ export function AddToCartForm({ details }: { details: any }) {
   };
   return (
     <Form className="flex flex-col gap-y-5" onSubmit={addToCartHandler}>
-      <div className="flex gap-x-5">
+      {/* <div className="flex gap-x-5">
         <p className="font-bold">Sizes :</p>
         <MyRadioButton id="size1" name="size" text="XS" />
         <MyRadioButton id="size2" name="size" text="S" />
@@ -37,7 +37,7 @@ export function AddToCartForm({ details }: { details: any }) {
         <MyRadioButton id="color3" name="color" text="Red" />
         <MyRadioButton id="color4" name="color" text="Blue" />
         <MyRadioButton id="color5" name="color" text="Green" />
-      </div>
+      </div> */}
       <div className="w-fit flex">
         <MyButtonsGroup
           productDetails={details}

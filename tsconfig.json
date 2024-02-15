@@ -110,6 +110,6 @@
     // "skipDefaultLibCheck": true,                      /* Skip type checking .d.ts files that are included with TypeScript. */
     "skipLibCheck": true /* Skip type checking all .d.ts files. */
   },
-  "include": ["src/**/*.ts", "src/**/*.tsx", "src/**/*.module.css"],
+  "include": ["src/**/*.ts", "src/**/*.tsx", "src/**/*.module.css", "src/components/ui/MyRating.js"],
   "exclude": ["node_modules"]
 }

@@ -24,7 +24,7 @@ const myRouter = createBrowserRouter([
       {
         path: "shop/:productId",
         element: <ProductDetails />,
-        loader: detailsLoader,
+        // loader: detailsLoader,
       },
       { path: "cart", element: <Cart /> },
       { path: "checkout", element: <Checkout /> },

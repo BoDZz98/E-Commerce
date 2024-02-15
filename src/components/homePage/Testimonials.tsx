@@ -1,9 +1,8 @@
 import { useState } from "react";
-import Rating from "react-rating";
-import FullStar from "../icons/FullStar";
-import EmptyStar from "../icons/EmptyStar";
+
 import ArrowLeft from "../icons/ArrowLeft";
 import ArrowRight from "../icons/ArrowRight";
+import MyRating from "../ui/MyRating";
 
 const data = [
   {
@@ -60,12 +59,7 @@ const Testimonials = () => {
               />
             </svg>
           </p>
-          {/* <Rating
-            readonly
-            initialRating={data[index].rating}
-            fullSymbol={<FullStar />}
-            emptySymbol={<EmptyStar />}
-          /> */}
+          <MyRating value={data[index].rating} readOnly />
         </div>
         <div
           className="bg-gray-100 h-full w-1/12 flex items-center justify-center hover:bg-gray-300 duration-500 ease-in-out"

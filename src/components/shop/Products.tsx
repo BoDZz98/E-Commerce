@@ -1,11 +1,16 @@
-import { Card, ListGroup } from "react-bootstrap";
 import { useDispatch } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { cartActions } from "../../store/cart-slice";
-// import ReactStars from "react-rating-stars-component";
+import MyRating from "../ui/MyRating";
 
-export function Products({ productsDetails }: any) {
+type ProductProps = {
+  productsDetails: Array<{}>;
+};
+
+export function Products({ productsDetails }: ProductProps) {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+
   function addToCartHandler(
     id: any,
     title: string,
@@ -22,14 +27,15 @@ export function Products({ productsDetails }: any) {
       })
     );
   }
+
   return (
     <div className="gap-y-10 grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 ">
-      {productsDetails.map((product: any) => (
+      {productsDetails.map((product: { [key: string]: string }) => (
         <div
           id={product.id}
           className="w-full  max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 transition ease-in-out delay-150 hover:scale-110 duration-300"
         >
-          <Link to={`${product.id}`}>
+          <Link to={`${product.id}`} state={product}>
             <img
               className="w-full h-96 rounded-t-lg"
               src={product.api_featured_image}
@@ -42,16 +48,9 @@ export function Products({ productsDetails }: any) {
               </h5>
             </Link>
             <div className="flex items-center mt-2.5 mb-5">
-              {/* <ReactStars
-                edit={false}
-                count={5}
-                value={product.rating.toFixed(0)}
-                // onChange={ratingChanged}
-                size={24}
-                activeColor="#ffd700"
-              /> */}
+              <MyRating readOnly value={parseInt(product.rating).toFixed(0)} />
               <span className="bg-blue-100 text-blue-800 text-xs font-semibold px-2.5 py-0.5 rounded dark:bg-blue-200 dark:text-blue-800 ms-3">
-                {product.rating.toFixed(0)}
+                {parseInt(product.rating).toFixed(0)}
               </span>
             </div>
             <div className="flex items-center justify-between">
@@ -63,7 +62,7 @@ export function Products({ productsDetails }: any) {
                   null,
                   product.id,
                   product.name,
-                  product.price,
+                  parseInt(product.price),
                   product.api_featured_image
                 )}
                 className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
