@@ -33,7 +33,7 @@ function Shop() {
   }) => {
     const newData: Array<{}> = data.filter(
       (product: { [key: string]: number }) => {
-        console.log(product);
+        // console.log(product);
         return (
           parseInt(product[searchData.filterType].toFixed(0)) >=
             searchData.minValue &&
@@ -42,7 +42,7 @@ function Shop() {
         );
       }
     );
-    console.log(newData.length);
+    // console.log(newData.length);
     setFilteredData(newData);
   };
 

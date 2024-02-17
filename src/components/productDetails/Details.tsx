@@ -5,7 +5,7 @@ export function Details({ productDetails }: any) {
   return (
     <div className="flex flex-col gap-y-1 p-4 ">
       <h3 className="font-extrabold">{productDetails.name}</h3>
-      <MyRating value={productDetails.rating} readOnly />
+      <MyRating value={productDetails.rating} readOnly changeHandler={null} />
       <h2>${productDetails.price}</h2>
       <p className="mt-2">{productDetails.description}</p>
       <AddToCartForm details={productDetails} />

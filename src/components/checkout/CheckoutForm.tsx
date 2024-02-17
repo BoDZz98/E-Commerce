@@ -1,7 +1,7 @@
 import { Form } from "react-router-dom";
 import useInput from "../../hooks/use-input";
 import { Col, Row } from "react-bootstrap";
-import MyFormInput2 from "../formComponents/MyFormInput2";
+import MyFormInput from "../formComponents/MyFormInput";
 
 const CheckoutForm = () => {
   const {
@@ -57,116 +57,79 @@ const CheckoutForm = () => {
     reset: resetZipCodeInput,
   } = useInput((value: any) => value.trim().length > 2);
 
-  const adress1Class = adress1InputHasError
-    ? "border border-danger bg-red-200 py-2 px-3"
-    : "border py-2 px-3";
-  const adress2Class = adress2InputHasError
-    ? "border border-danger bg-red-200 py-2 px-3"
-    : "border py-2 px-3";
-  const countryClass = countryInputHasError
-    ? "border border-danger bg-red-200 py-2 px-3"
-    : "border py-2 px-3";
-  const cityClass = cityInputHasError
-    ? "border border-danger bg-red-200 py-2 px-3"
-    : "border py-2 px-3";
-  const mobileClass = mobileInputHasError
-    ? "border border-danger bg-red-200 py-2 px-3"
-    : "border py-2 px-3";
-  const zipCodeClass = zipCodeInputHasError
-    ? "border border-danger bg-red-200 py-2 px-3"
-    : "border py-2 px-3";
-
   return (
     <div className="flex flex-col items-center xl:items-start ">
       <h3 className="mb-8 font-bold  ">Billing Adress</h3>
       <Form className=" gap-y-4 w-5/6">
-        <Row>
+        <Row className="mb-4">
           <Col>
-            <MyFormInput2
-              type="text"
+            <MyFormInput
               id="adress1"
               label="Address Line 1"
-              class={adress1Class}
+              errorMsg="Pls enter a valid address"
               value={enteredAdress1}
               onChange={adress1ChangeHandler}
               onBlur={adress1BlurHandler}
-              errorText=" Adress line 1 is required"
               hasError={adress1InputHasError}
-              placeholder="123 street"
             />
           </Col>
           <Col>
-            <MyFormInput2
-              type="text"
+            <MyFormInput
               id="adress2"
               label="Address Line 2"
-              class={adress2Class}
+              errorMsg="Pls enter a valid address"
               value={enteredAdress2}
               onChange={adress2ChangeHandler}
               onBlur={adress2BlurHandler}
-              errorText=" Adress line 2 is required"
               hasError={adress2InputHasError}
-              placeholder="123 street"
             />
           </Col>
         </Row>
-        <Row>
+        <Row className="mb-4">
           <Col>
-            <MyFormInput2
-              type="text"
+            <MyFormInput
               id="country"
               label="Country"
-              class={countryClass}
+              errorMsg="Pls enter a valid country"
               value={enteredCountry}
               onChange={countryChangeHandler}
               onBlur={countryBlurHandler}
-              errorText=" Country is required"
               hasError={countryInputHasError}
-              placeholder="Egypt"
             />
           </Col>
           <Col>
-            <MyFormInput2
-              type="text"
-              id="City"
+            <MyFormInput
+              id="city"
               label="City"
-              class={cityClass}
+              errorMsg="Pls enter a valid City"
               value={enteredCity}
               onChange={cityChangeHandler}
               onBlur={cityBlurHandler}
-              errorText=" City is required"
               hasError={cityInputHasError}
-              placeholder="Cairo"
             />
           </Col>
         </Row>
-        <Row>
+        <Row className="mb-4">
           <Col>
-            <MyFormInput2
-              type="number"
+            <MyFormInput
               id="mobile"
-              label="mobile"
-              class={mobileClass}
+              label="Mobile"
+              errorMsg="Pls enter a valid mobile"
               value={enteredMobile}
               onChange={mobileChangeHandler}
               onBlur={mobileBlurHandler}
-              errorText="Enter a valid mobile number"
-              hasError={countryInputHasError}
-              placeholder="123456789"
+              hasError={mobileInputHasError}
             />
           </Col>
           <Col>
-            <MyFormInput2
-              type="number"
+            <MyFormInput
               id="zipCode"
               label="Zip Code"
-              class={zipCodeClass}
+              errorMsg="Zip Code unavailable"
               value={enteredZipCode}
               onChange={zipCodeChangeHandler}
               onBlur={zipCodeBlurHandler}
-              errorText="Enter a valid Zip Code"
               hasError={zipCodeInputHasError}
-              placeholder="123"
             />
           </Col>
         </Row>

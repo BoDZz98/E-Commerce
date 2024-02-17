@@ -59,7 +59,7 @@ const Testimonials = () => {
               />
             </svg>
           </p>
-          <MyRating value={data[index].rating} readOnly />
+          <MyRating value={data[index].rating} readOnly changeHandler={null} />
         </div>
         <div
           className="bg-gray-100 h-full w-1/12 flex items-center justify-center hover:bg-gray-300 duration-500 ease-in-out"

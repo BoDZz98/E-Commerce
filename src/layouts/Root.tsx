@@ -13,6 +13,8 @@ function Root() {
   useEffect(() => {
     async function getData() {
       const data = await productsLoader();
+      // console.log(data);
+
       dispatch(authActions.setData(data));
     }
     getData();
@@ -39,7 +41,7 @@ export default Root;
 
 export async function productsLoader(): Promise<Array<{}>> {
   const response = await fetch(
-    "http://makeup-api.herokuapp.com/api/v1/products.json?price_greater_than=1&rating_greater_than=1"
+    "https://makeup-api.herokuapp.com/api/v1/products.json?price_greater_than=1&rating_greater_than=1"
   );
 
   if (!response.ok) {
@@ -50,6 +52,7 @@ export async function productsLoader(): Promise<Array<{}>> {
     // return json({ message: "could not fetch" }, { status: 500 });
   } else {
     const resData = await response.json();
+    // console.log(resData.slice(0, 20));
 
     // console.log(resData[0]);
     return resData.slice(0, 20);

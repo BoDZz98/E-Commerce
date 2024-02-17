@@ -1,15 +1,10 @@
 import { Form } from "react-router-dom";
 import useInput from "../../hooks/use-input";
+import MyRating from "../ui/MyRating";
+import { useState } from "react";
 
 export function ReviewForm() {
-  const {
-    value: enteredFirstName,
-    isValid: enteredFirstNameIsValid,
-    hasError: firstNameInputHasError,
-    valueChangeHandler: firstNameChangeHandler,
-    inputBlurHanlder: firstNameBlurHandler,
-    reset: resetFirstNameInput,
-  } = useInput((value: any) => value.trim().length > 6);
+  const [rating, setRating] = useState(1);
 
   const {
     value: enteredDesc,
@@ -18,7 +13,7 @@ export function ReviewForm() {
     valueChangeHandler: descChangeHandler,
     inputBlurHanlder: descBlurHandler,
     reset: resetDescInput,
-  } = useInput((value: any) => value.trim().length > 6);
+  } = useInput((value: string): boolean => value.trim().length > 6);
 
   const descClass = descHasError ? "border border-danger bg-red-200" : "";
   return (
@@ -28,33 +23,32 @@ export function ReviewForm() {
     >
       <div className="flex flex-col gap-y-1 h-20 ">
         <label htmlFor="name">Your Rating</label>
-
-        {firstNameInputHasError && (
-          <p className="text-red-600 text-sm">Please rate</p>
-        )}
+        <MyRating
+          readOnly={false}
+          value={rating}
+          changeHandler={(value: number) => setRating(value)}
+        />
       </div>
 
       <div className="flex flex-col gap-y-1 ">
         <label htmlFor="desc">Your Review</label>
         <textarea
-          // type="text"
           id="desc"
           name="desc"
           className={`rounded p-2 h-28 ${descClass}`}
           value={enteredDesc}
-          // onChange={descChangeHandler}
+          onChange={descChangeHandler}
           onBlur={descBlurHandler}
         />
         {descHasError && (
-          <p className="text-red-600 text-sm">
-            Your Review Must be Greater than 6
-          </p>
+          <p className="text-red-600 text-sm">Please enter a valid desc</p>
         )}
       </div>
 
       <div className="flex flex-col gap-y-2 items-start">
-        <button className="btn btn-primary">Submit</button>{" "}
-        {/* disabled={!formIsValid} */}
+        <button className="btn btn-primary" disabled={!enteredDescIsValid}>
+          Submit
+        </button>
       </div>
     </Form>
   );

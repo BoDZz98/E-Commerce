@@ -5,12 +5,13 @@ import { Details } from "../components/productDetails/Details";
 import { MyTabs } from "../components/productDetails/Tabs";
 import { json, useLoaderData, useLocation } from "react-router-dom";
 import MyBreadcrumb from "../components/ui/MyBreadcrumb";
+import { ReviewsTab } from "../components/productDetails/ReviewsTab";
 
 export function ProductDetails() {
   // const details: any = useLoaderData();
   const location = useLocation();
   const productDetails = location.state;
-  console.log("imgs are :", productDetails);
+  // console.log("imgs are :", productDetails);
 
   // let imgs = [];
   if (productDetails.images !== null) {
@@ -35,7 +36,8 @@ export function ProductDetails() {
           </Col>
         </Row>
         <Col className="flex flex-col items-center  my-28">
-          <MyTabs />
+          {/* <MyTabs /> */}
+          <ReviewsTab />
         </Col>
       </Container>
     </Fragment>
