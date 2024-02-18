@@ -1,4 +1,5 @@
-import { Form } from "react-router-dom";
+import { Form, useActionData, useNavigate } from "react-router-dom";
+
 import {
   ALLITEMS,
   checkIfBrand,
@@ -7,10 +8,16 @@ import {
 import { useState } from "react";
 
 function Search() {
+  const navigate = useNavigate();
+
   const [inputHanlder, setInputHanlder] = useState("");
   const [filteredItems, setFilteredItems] = useState<Array<string> | null>(
     null
   );
+  // let searchedData: Array<{}>;
+
+  const searchedData: any = useActionData();
+  searchedData && navigate("/shop", { state: searchedData });
 
   function changeHandler(e: React.ChangeEvent<HTMLInputElement>) {
     setInputHanlder(e.target.value);
@@ -91,36 +98,22 @@ function Search() {
 
 export default Search;
 
-export async function searchAction({ request }: { request: any }) {
+export async function searchAction({
+  request,
+}: {
+  request: any;
+}): Promise<Array<{}>> {
   const data = await request.formData();
   const enteredText = data.get("search");
   const isBrand = checkIfBrand(enteredText.toLowerCase());
   const isProduct = checkIfProduct(enteredText.toLowerCase());
   // console.log("bool is :", isBrand);
-  const uri = `http://makeup-api.herokuapp.com/api/v1/products.json?${
+  const uri = `https://makeup-api.herokuapp.com/api/v1/products.json?${
     isBrand && `brand=${enteredText.toLowerCase()}`
   }&${isProduct && `product_type=${enteredText.toLowerCase()}`}`;
-  console.log(uri);
+
   const response = await fetch(uri);
-  const resData = await response.json();
-  console.log(resData);
+  const resData: Array<{}> = await response.json();
+  // console.log("resData is :", resData);
+  return resData;
 }
-
-/* <Form className="flex w-full">
-      <Form.Group className="mb-3 w-full">
-        <Form.Control type="text" placeholder="Search for products" />
-      </Form.Group>
-
-      <Button className="w-10 h-10 mx-1" variant="outline-dark" type="submit">
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          width="14"
-          height="14"
-          fill="currentColor"
-          class="bi bi-search"
-          viewBox="0 0 16 16"
-        >
-          <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
-        </svg>
-      </Button>
-    </Form> */

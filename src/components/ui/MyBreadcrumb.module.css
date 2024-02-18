@@ -1,6 +1,14 @@
 .cont {
   height: 18rem;
-  background-color: rgb(252 165 165);
+  /* background-color: rgb(252 165 165);  */
+
+  background: linear-gradient(
+    to right,
+    rgb(252, 165, 165),
+    rgb(255, 130, 130),
+    rgb(232, 0, 0)
+  );
+
   display: flex;
   flex-direction: column;
   /* VIP  */

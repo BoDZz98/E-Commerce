@@ -1,8 +1,6 @@
 import { Fragment } from "react";
 import { Col, Container, Row } from "react-bootstrap";
-import ProductDetailsCarousel from "../components/productDetails/Carousel";
 import { Details } from "../components/productDetails/Details";
-import { MyTabs } from "../components/productDetails/Tabs";
 import { json, useLoaderData, useLocation } from "react-router-dom";
 import MyBreadcrumb from "../components/ui/MyBreadcrumb";
 import { ReviewsTab } from "../components/productDetails/ReviewsTab";

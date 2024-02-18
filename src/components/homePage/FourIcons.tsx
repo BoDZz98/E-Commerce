@@ -19,7 +19,7 @@ const DATA = [
 
 function FourIcons() {
   return (
-    <div className="h-fit rounded-xl px-10 py-6 flex gap-x-3 items-center justify-center bg-gradient-to-r from-cyan-400 to-blue-400">
+    <div className="h-fit rounded-xl px-10 py-6 flex gap-x-3 items-center justify-center bg-gradient-to-r from-pink-400 to-red-300"> {/* bg-gradient-to-r from-cyan-400 to-blue-400 */}
       {DATA.map((item, index) => (
         <>
           <div className="flex flex-col w-1/4 p-6 hover:bg-cyan-200 rounded-lg transition duration-1000 ease-in-out">

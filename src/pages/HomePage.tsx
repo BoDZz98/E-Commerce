@@ -24,7 +24,6 @@ function HomePage() {
           </button>
         </div>
       </div>
-
       <FourIcons />
       <NewArrivals />
       <WhyUs />

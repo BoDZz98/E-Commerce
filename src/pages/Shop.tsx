@@ -4,6 +4,7 @@ import { Filter } from "../components/shop/Filter";
 import { Products } from "../components/shop/Products";
 import MyBreadcrumb from "../components/ui/MyBreadcrumb";
 import { useSelector } from "react-redux";
+import { useLocation } from "react-router-dom";
 
 interface State {
   auth: {
@@ -12,20 +13,15 @@ interface State {
   };
   // other properties of the root state if any
 }
-type Product = {
-  id: string;
-  api_featured_image: string;
-  name: string;
-  price: number;
-  rating: number;
-};
 
 function Shop() {
   const data = useSelector((state: State) => state.auth.initData);
-  // console.log(data[0]);
+  const [filteredData, setFilteredData] = useState<Array<{}>>(data);
 
-  const [filteredData, setFilteredData] = useState<Array<{}>>([]);
-  //
+  const location = useLocation();
+  const searchedData = location.state;
+  console.log(searchedData);
+
   const filterHandler = async (searchData: {
     filterType: string;
     minValue: number;
@@ -49,14 +45,15 @@ function Shop() {
   return (
     <Fragment>
       <MyBreadcrumb title="our shop" subTitle="Shop" />
-      <Container className="my-28">
+      <Container className="my-28 px-96">
         <Row>
           <Col xl={2}>
             <Filter searchHandler={filterHandler} />
           </Col>
           <Col xl={10}>
             <Products
-              productsDetails={filteredData.length !== 0 ? filteredData : data}
+              productsDetails={filteredData}
+              // productsDetails={filteredData.length !== 0 ? filteredData : data}
             />
           </Col>
         </Row>
