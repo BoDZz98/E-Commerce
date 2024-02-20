@@ -6,6 +6,7 @@ const authSlice = createSlice({
     isAuth: false,
     initData: [],
     reviews: [],
+    addressIsValid: false,
   },
   reducers: {
     login(state) {
@@ -22,6 +23,9 @@ const authSlice = createSlice({
     createReview(state, action) {
       const data = action.payload;
       state.reviews.push(data);
+    },
+    checkAddress(state) {
+      state.addressIsValid = true;
     },
   },
 });

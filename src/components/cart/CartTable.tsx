@@ -14,8 +14,8 @@ type CartItem = {
 export function CartTable() {
   const cartItems = useSelector((state: any) => state.cart.items);
   const dispatch = useDispatch();
-  const deleteCartItem = (id: string) =>
-    dispatch(cartActions.deleteItemFromCart(id));
+  const deleteCartItem = (id: string, price: number) =>
+    dispatch(cartActions.deleteItemFromCart({ id, price }));
 
   return (
     <table className="min-w-full border text-center font-light dark:border-neutral-500">
@@ -61,7 +61,9 @@ export function CartTable() {
             </td>
             <td className=" border-r px-6 py-4">${cartItem.totalPrice}</td>
             <td className="px-6 py-4">
-              <CloseButton onClick={deleteCartItem.bind(null, cartItem.id)} />
+              <CloseButton
+                onClick={deleteCartItem.bind(null, cartItem.id, cartItem.price)}
+              />
             </td>
           </tr>
         ))}

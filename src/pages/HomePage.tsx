@@ -19,7 +19,7 @@ function HomePage() {
             natural features to experimenting with bold looks, our platform is
             your go-to source for inspiration, tips, and tutorials.
           </p>
-          <button className=" w-fit px-8 py-4 text-2xl rounded font-bold text-white bg-gradient-to-r from-cyan-500 to-blue-500 transition duration-500 ease-in-out hover:bg-gradient-to-r hover:from-blue-500 hover:to-cyan-500 transform hover:-translate-y-1 hover:scale-110 ">
+          <button className=" w-fit px-8 py-4 text-2xl rounded font-bold text-white bg-gradient-to-r from-cyan-400 to-blue-400 transition duration-500 ease-in-out hover:bg-gradient-to-r hover:from-blue-500 hover:to-cyan-500 transform hover:-translate-y-1 hover:scale-110 ">
             Explore More !
           </button>
         </div>

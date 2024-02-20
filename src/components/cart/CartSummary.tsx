@@ -1,6 +1,8 @@
 import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 export function CartSummary() {
+  const navigate = useNavigate();
   const cartTotalPrice = useSelector((state: any) => state.cart.totalCartPrice);
   const shippingPrice = cartTotalPrice === 0 ? 0 : 50;
   return (
@@ -42,7 +44,15 @@ export function CartSummary() {
           </tr>
           <tr>
             <td className="px-6 " colSpan={2}>
-              <button className="bg-red-400 py-3 mb-4 w-full font-normal hover:text-white hover:font-bold">
+              <button
+                disabled={cartTotalPrice === 0}
+                onClick={() => navigate("/checkout")}
+                className={
+                  cartTotalPrice === 0
+                    ? "bg-red-300 py-3 mb-4 w-full font-normal  cursor-not-allowed"
+                    : "bg-red-300 py-3 mb-4 w-full font-normal  hover:bg-red-400 hover:shadow-lg hover:text-white transition ease-in-out delay-150 hover:scale-110 duration-300 "
+                }
+              >
                 Proceed To Checkout
               </button>
             </td>

@@ -9,16 +9,19 @@ const data = [
     name: "Maria Smantha",
     rating: 3,
     desc: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quod eosid officiis hic tenetur quae quaerat ad velit ab hic.",
+    img: "https://mdbcdn.b-cdn.net/img/Photos/Avatars/img%20(1).jpg",
   },
   {
-    name: "Bodzation",
+    name: "Sara",
     rating: 4,
-    desc: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quod eosid officiis hic tenetur quae quaerat ad velit ab hic.",
+    desc: "Dolore erat dolor sit lorem vero amet. Sed sit lorem magna, ipsum no sit erat lorem et magna ipsum dolore amet erat.",
+    img: "https://mdbcdn.b-cdn.net/img/Photos/Avatars/img%20(2).jpg",
   },
   {
-    name: "Dodzation",
+    name: "John",
     rating: 1,
-    desc: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quod eosid officiis hic tenetur quae quaerat ad velit ab hic.",
+    desc: " ipsum no sit erat lorem et magna ipsum dolore amet erat. Quod eosid officiis hic tenetur quae quaerat ad velit ab hic.",
+    img: "https://mdbcdn.b-cdn.net/img/Photos/Avatars/img%20(3).jpg",
   },
 ];
 const Testimonials = () => {
@@ -42,7 +45,7 @@ const Testimonials = () => {
         </div>
         <div className="flex flex-col items-center text-center w-10/12">
           <img
-            src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/img%20(1).jpg"
+            src={data[index].img}
             className="w-40 rounded-full shadow-lg dark:shadow-black/20"
           />
           <h5 className="mt-3 text-2xl font-bold">{data[index].name}</h5>

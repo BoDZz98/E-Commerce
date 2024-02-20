@@ -2,8 +2,11 @@ import { Form } from "react-router-dom";
 import useInput from "../../hooks/use-input";
 import { Col, Row } from "react-bootstrap";
 import MyFormInput from "../formComponents/MyFormInput";
+import { useDispatch } from "react-redux";
+import { authActions } from "../../store/auth-slice";
 
 const CheckoutForm = () => {
+  const dispatch = useDispatch();
   const {
     value: enteredAdress1,
     isValid: enteredAdress1IsValid,
@@ -57,6 +60,16 @@ const CheckoutForm = () => {
     reset: resetZipCodeInput,
   } = useInput((value: any) => value.trim().length > 2);
 
+  if (
+    enteredAdress1IsValid &&
+    enteredAdress2IsValid &&
+    enteredCountryIsValid &&
+    enteredCityIsValid &&
+    enteredMobileIsValid &&
+    enteredZipCodeIsValid
+  ) {
+    dispatch(authActions.checkAddress());
+  }
   return (
     <div className="flex flex-col items-center xl:items-start ">
       <h3 className="mb-8 font-bold  ">Billing Adress</h3>

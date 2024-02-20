@@ -3,6 +3,7 @@ import { useSelector } from "react-redux";
 const CheckoutSummary = () => {
   const cartTotalPrice = useSelector((state: any) => state.cart.totalCartPrice);
   const cartItems = useSelector((state: any) => state.cart.items);
+  const addressValid = useSelector((state: any) => state.auth.addressIsValid);
   console.log(cartItems);
   const shippingPrice = cartTotalPrice === 0 ? 0 : 50;
 
@@ -44,7 +45,14 @@ const CheckoutSummary = () => {
           </tr>
           <tr>
             <td className="px-6 " colSpan={2}>
-              <button className="bg-red-400 py-3 mb-4 w-full font-normal hover:text-white hover:font-bold">
+              <button
+                disabled={!addressValid}
+                className={
+                  !addressValid
+                    ? "bg-red-300 py-3 mb-4 w-full font-normal  cursor-not-allowed"
+                    : "bg-red-300 py-3 mb-4 w-full font-normal  hover:bg-red-400 hover:shadow-lg hover:text-white transition ease-in-out delay-150 hover:scale-110 duration-300 "
+                }
+              >
                 Place Order
               </button>
             </td>
