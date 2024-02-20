@@ -1,27 +1,36 @@
-import { Form } from "react-router-dom";
+import { Form, useNavigate } from "react-router-dom";
 import { MyButtonsGroup } from "../ui/MyButtonsGroup";
 import { useDispatch } from "react-redux";
 import { cartActions } from "../../store/cart-slice";
 import { MyRadioButton } from "../formComponents/MyRadioButton";
 
-export function AddToCartForm({ details }: { details: any }) {
+type AddToCartFormProps = {
+  id: string;
+  name: string;
+  price: number;
+  api_featured_image: string;
+  quantity: number;
+};
+export function AddToCartForm({ details }: { details: AddToCartFormProps }) {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   let number = 1;
   const changeNumber = (numberGot: number) => (number = numberGot);
 
   const addToCartHandler = () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
     dispatch(
       cartActions.addItemToCart({
         id: details.id,
-        title: details.title,
+        title: details.name,
         price: details.price,
-        image: details.thumbnail,
+        image: details.api_featured_image,
         quantity: number,
       })
     );
   };
   return (
-    <Form className="flex flex-col gap-y-5" onSubmit={addToCartHandler}>
+    <>
       {/* <div className="flex gap-x-5">
         <p className="font-bold">Sizes :</p>
         <MyRadioButton id="size1" name="size" text="XS" />
@@ -44,7 +53,10 @@ export function AddToCartForm({ details }: { details: any }) {
           inCart={false}
           onChange={changeNumber}
         />
-        <button className="bg-red-400 ml-8 p-2 w-40 flex gap-x-3" type="submit">
+        <button
+          className="bg-red-300 ml-8 p-2 w-40 flex gap-x-3 hover:bg-red-400 hover:shadow-lg hover:text-white transition ease-in-out delay-150 hover:scale-110 duration-300 rounded-md"
+          onClick={addToCartHandler}
+        >
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="20"
@@ -58,6 +70,6 @@ export function AddToCartForm({ details }: { details: any }) {
           Add To Cart
         </button>
       </div>
-    </Form>
+    </>
   );
 }

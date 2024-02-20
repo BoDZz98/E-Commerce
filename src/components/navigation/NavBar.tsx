@@ -48,7 +48,7 @@ function NavBar() {
             </Nav.Link>
           </NavLink>
 
-          <NavDropdown
+          {/* <NavDropdown
             className="text-black fs-5 "
             title="Pages"
             id="navbarScrollingDropdown"
@@ -70,14 +70,26 @@ function NavBar() {
             >
               <NavDropdown.Item href="/">Checkout</NavDropdown.Item>
             </NavLink>
-          </NavDropdown>
+          </NavDropdown> */}
           <NavLink
-            to="contact"
+            to="cart"
             className={({ isActive }) =>
               isActive ? "text-cyan-400 " : "no-underline"
             }
           >
-            <Nav.Link className="text-black fs-5 ">Contact</Nav.Link>
+            <Nav.Link href="/" className="text-black fs-5 ">
+              Shopping Cart
+            </Nav.Link>
+          </NavLink>
+          <NavLink
+            to="checkout"
+            className={({ isActive }) =>
+              isActive ? "text-cyan-400 " : "no-underline"
+            }
+          >
+            <Nav.Link href="/" className="text-black fs-5 ">
+              checkout
+            </Nav.Link>
           </NavLink>
         </Nav>
         {!isAuth ? (

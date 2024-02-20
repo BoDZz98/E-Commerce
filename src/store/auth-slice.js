@@ -5,6 +5,7 @@ const authSlice = createSlice({
   initialState: {
     isAuth: false,
     initData: [],
+    reviews: [],
   },
   reducers: {
     login(state) {
@@ -17,6 +18,10 @@ const authSlice = createSlice({
       const data = action.payload;
       state.initData = data;
       // console.log("initdata is : ", state.initData);
+    },
+    createReview(state, action) {
+      const data = action.payload;
+      state.reviews.push(data);
     },
   },
 });

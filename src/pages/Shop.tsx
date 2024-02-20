@@ -18,23 +18,17 @@ function Shop() {
   const data = useSelector((state: State) => state.auth.initData);
   const [filteredData, setFilteredData] = useState<Array<{}>>(data);
 
-  const location = useLocation();
-  const searchedData = location.state;
-  console.log(searchedData);
-
   const filterHandler = async (searchData: {
     filterType: string;
     minValue: number;
     maxValue: number;
   }) => {
     const newData: Array<{}> = data.filter(
-      (product: { [key: string]: number }) => {
+      (product: { [key: string]: any }) => {
         // console.log(product);
         return (
-          parseInt(product[searchData.filterType].toFixed(0)) >=
-            searchData.minValue &&
-          parseInt(product[searchData.filterType].toFixed(0)) <=
-            searchData.maxValue
+          parseInt(product[searchData.filterType]) >= searchData.minValue &&
+          parseInt(product[searchData.filterType]) <= searchData.maxValue
         );
       }
     );

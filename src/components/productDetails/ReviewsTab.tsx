@@ -1,31 +1,36 @@
 import { Col, Row } from "react-bootstrap";
-import { Form } from "react-router-dom";
 import { ReviewForm } from "./ReviewForm";
+import MyRating from "../ui/MyRating";
+import { useSelector } from "react-redux";
 
-export function ReviewsTab() {
+export function ReviewsTab({ productName }: { productName: string }) {
+  const reviews: Array<{ stars: number; desc: string }> = useSelector(
+    (state: any) => state.auth.reviews
+  );
+
   return (
     <Row className="w-screen px-28">
       <Col>
-        <div className="flex flex-col gap-y-8">
-          <h3>1 Review for Colorfull stylish shirt</h3>
-          <div className="flex flex-col bg-gray-100 rounded-lg p-3">
-            <h5>John Doe</h5>
-            <h6>Stars</h6>
-            <p>
-              Diam amet duo labore stet elitr ea clita ipsum, tempor labore
-              accusam ipsum et no at. Kasd diam tempor rebum magna dolores sed
-              sed eirmod ipsum.
+        <div className="flex flex-col items-center   gap-y-8">
+          <h3 className="place-self-start "> Review for {productName}</h3>
+
+          {reviews.length !== 0 ? (
+            reviews.map((review) => (
+              <div className="flex flex-col bg-gray-100 rounded-lg p-3 w-full shadow-lg ">
+                <h5>Bodzz</h5>
+                <MyRating
+                  readOnly
+                  value={review.stars}
+                  changeHandler={() => {}}
+                />
+                <p>{review.desc}</p>
+              </div>
+            ))
+          ) : (
+            <p className="bg-gray-100 px-20 py-5 text-lg font-semibold rounded-lg ">
+              No reviews yet
             </p>
-          </div>
-          <div className="flex flex-col bg-gray-100 rounded-lg p-3">
-            <h5>John Doe</h5>
-            <h6>Stars</h6>
-            <p>
-              Diam amet duo labore stet elitr ea clita ipsum, tempor labore
-              accusam ipsum et no at. Kasd diam tempor rebum magna dolores sed
-              sed eirmod ipsum.
-            </p>
-          </div>
+          )}
         </div>
       </Col>
       <Col>

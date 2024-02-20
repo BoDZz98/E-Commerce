@@ -17,6 +17,8 @@ export function Products({ productsDetails }: ProductProps) {
     price: number,
     image: string
   ) {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+
     dispatch(
       cartActions.addItemToCart({
         id: id,

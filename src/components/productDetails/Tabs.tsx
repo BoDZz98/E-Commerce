@@ -6,7 +6,7 @@ import { ReviewsTab } from "./ReviewsTab";
 export function MyTabs() {
   return (
     <Tabs defaultActiveKey="Description" className="mb-3 fs-3 ">
-      <Tab eventKey="Description" title="Description">
+      {/* <Tab eventKey="Description" title="Description">
         <DescTab />
       </Tab>
       <Tab eventKey="Info" title="Info">
@@ -14,7 +14,7 @@ export function MyTabs() {
       </Tab>
       <Tab eventKey="Reviews" title="Reviews">
         <ReviewsTab />
-      </Tab>
+      </Tab> */}
     </Tabs>
   );
 }

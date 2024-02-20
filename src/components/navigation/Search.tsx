@@ -17,7 +17,7 @@ function Search() {
   // let searchedData: Array<{}>;
 
   const searchedData: any = useActionData();
-  searchedData && navigate("/shop", { state: searchedData });
+  searchedData && navigate("/searchedProducts", { state: searchedData });
 
   function changeHandler(e: React.ChangeEvent<HTMLInputElement>) {
     setInputHanlder(e.target.value);
@@ -108,7 +108,7 @@ export async function searchAction({
   const isBrand = checkIfBrand(enteredText.toLowerCase());
   const isProduct = checkIfProduct(enteredText.toLowerCase());
   // console.log("bool is :", isBrand);
-  const uri = `https://makeup-api.herokuapp.com/api/v1/products.json?${
+  const uri = `https://makeup-api.herokuapp.com/api/v1/products.json?price_greater_than=1&rating_greater_than=1&${
     isBrand && `brand=${enteredText.toLowerCase()}`
   }&${isProduct && `product_type=${enteredText.toLowerCase()}`}`;
 

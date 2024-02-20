@@ -10,6 +10,7 @@ import { ProductDetails, detailsLoader } from "./pages/ProductDetails";
 import { Cart } from "./pages/Cart";
 import Checkout from "./pages/Checkout";
 import { searchAction } from "./components/navigation/Search";
+import SearchedProducts from "./pages/SearchedProducts";
 
 const myRouter = createBrowserRouter([
   {
@@ -21,6 +22,7 @@ const myRouter = createBrowserRouter([
     children: [
       { index: true, element: <HomePage /> },
       { path: "shop", element: <Shop /> },
+      { path: "searchedProducts", element: <SearchedProducts /> },
       {
         path: "shop/:productId",
         element: <ProductDetails />,

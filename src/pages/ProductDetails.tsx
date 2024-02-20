@@ -9,23 +9,15 @@ export function ProductDetails() {
   // const details: any = useLoaderData();
   const location = useLocation();
   const productDetails = location.state;
-  // console.log("imgs are :", productDetails);
 
-  // let imgs = [];
-  if (productDetails.images !== null) {
-    // setisLoaded(true);
-  }
   return (
     <Fragment>
       <MyBreadcrumb title="product details" subTitle="Shop" />
       <Container className="mt-28">
         <Row>
           <Col xl={5} className="p-4 ">
-            {/* <ProductDetailsCarousel
-              productImgs={productDetails.api_featured_image}
-            /> */}
             <img
-              className="h-full rounded-lg transition ease-in-out delay-150 hover:scale-125 duration-300"
+              className="h-full rounded-lg "
               src={productDetails.api_featured_image}
             />
           </Col>
@@ -35,7 +27,7 @@ export function ProductDetails() {
         </Row>
         <Col className="flex flex-col items-center  my-28">
           {/* <MyTabs /> */}
-          <ReviewsTab />
+          <ReviewsTab productName={productDetails.name} />
         </Col>
       </Container>
     </Fragment>
@@ -57,3 +49,7 @@ export async function detailsLoader({ params }: any): Promise<{}> {
     return data;
   }
 }
+
+/* <ProductDetailsCarousel
+              productImgs={productDetails.api_featured_image}
+            /> */

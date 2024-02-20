@@ -53,22 +53,25 @@ export function MyButtonsGroup({
       return newNumber;
     });
   return (
-    <Fragment>
+    <div className="flex items-center justify-center">
       <button
         type="button"
         onClick={dec}
-        className="bg-red-400 pb-1 w-10 h-10 text-3xl font-bold"
+        className="bg-red-300 pb-1 w-10 h-10 text-3xl font-bold hover:bg-red-400 hover:shadow-lg hover:text-white"
       >
         -
       </button>
-      <input className="w-14  px-6" type="text" value={number} disabled />
+      <div className="flex items-center justify-center w-10 h-10  bg-red-100">
+        {number}
+      </div>
+
       <button
         type="button"
         onClick={inc}
-        className="bg-red-400 pb-1 w-10 h-10 text-3xl font-bold"
+        className="bg-red-300 pb-1 w-10 h-10 text-3xl font-bold hover:bg-red-400 hover:shadow-lg hover:text-white"
       >
         +
       </button>
-    </Fragment>
+    </div>
   );
 }
